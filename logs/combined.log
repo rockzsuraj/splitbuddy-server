@@ -3781,3 +3781,5 @@
     at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
     at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
     at process.emit (node:events:519:28)
+2025-10-31 17:54:54 [[32minfo[39m]: ✅ Database connection established successfully
+2025-10-31 17:54:54 [[32minfo[39m]: Server running on port 3000

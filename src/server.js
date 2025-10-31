@@ -1,27 +1,29 @@
-const knex = require('knex/lib');
+const serverless = require('serverless-http');
 const app = require('../app');
 const { testConnection } = require('./config/database');
-const { PORT } = require('./config/env');
 const logger = require('./utils/logger');
 
-async function startServer() {
+// Vercel uses serverless functions, so no app.listen()
+// Instead, export a serverless handler
+
+// Test database connection once when the function is initialized
+(async () => {
   try {
     await testConnection();
-    app.listen(PORT, () => {
-      logger.info(`Server running on port ${PORT}`);
-    });
+    logger.info('✅ Database connection successful.');
   } catch (err) {
-    logger.error('Failed to start server:', err);
-    process.exit(1);
+    logger.error('❌ Failed to connect to database:', err);
   }
-}
+})();
+
+// Optional: Catch unhandled exceptions for debugging (non-fatal in serverless)
 process.on('uncaughtException', (error) => {
   logger.error('Uncaught Exception:', error);
-  process.exit(1);
 });
 
 process.on('unhandledRejection', (reason) => {
   logger.error('Unhandled Rejection:', reason);
 });
 
-startServer();
+// Export the handler for Vercel
+module.exports = serverless(app);
