@@ -5,10 +5,28 @@ const userRoutes = require('./user.routes');
 const docsRoutes = require('./docs.routes');
 const { notFoundHandler } = require('../utils/apiError');
 const groupRoutes = require('./group.routes');
+const { testConnection } = require('../config/database');
+
 
 // Health check endpoint
-router.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+
+router.get('/health', async (req, res) => {
+  try {
+    const dbStatus = await testConnection();
+    res.status(200).json({ 
+      status: 'OK', 
+      timestamp: new Date().toISOString(),
+      database: 'connected',
+      environment: process.env.NODE_ENV || 'development'
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'ERROR',
+      timestamp: new Date().toISOString(),
+      database: 'disconnected',
+      environment: process.env.NODE_ENV || 'development'
+    });
+  }
 });
 
 // API routes

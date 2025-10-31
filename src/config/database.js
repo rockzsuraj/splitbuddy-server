@@ -1,64 +1,108 @@
 const mysql = require('mysql2/promise');
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, DB_TIMEZONE, DB_CHARSET, DB_QUEUE_LIMIT,   } = require('./env');
-const logger = require('../utils/logger'); // Assuming you have a logger utility
+const logger = require('../utils/logger');
 
-// Create connection pool with additional production-ready settings
-const pool = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT || 3306,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10, // Adjust based on your application needs
-  queueLimit: DB_QUEUE_LIMIT || 0, // 0 means unlimited
-  enableKeepAlive: true, // Important for production
-  keepAliveInitialDelay: 0,
-  timezone: DB_TIMEZONE, // Set your preferred timezone
-  charset: DB_CHARSET // Supports full Unicode including emojis
-});
+// Use lazy initialization to prevent cold start timeouts
+let pool;
+let connectionTested = false;
 
-// Enhanced connection test function
+function getPool() {
+  if (!pool) {
+    pool = mysql.createPool({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT || 3306,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      waitForConnections: true,
+      connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 10,
+      queueLimit: parseInt(process.env.DB_QUEUE_LIMIT) || 0,
+      enableKeepAlive: true,
+      keepAliveInitialDelay: 0,
+      charset: process.env.DB_CHARSET || 'utf8mb4',
+      
+      // ✅ SSL for Aiven
+      ssl: process.env.DB_SSL === 'true' ? {
+        rejectUnauthorized: false
+      } : false
+    });
+
+    // Connection event handlers
+    pool.on('acquire', (connection) => {
+      if (process.env.NODE_ENV !== 'production') {
+        logger.debug('Connection acquired');
+      }
+    });
+
+    pool.on('release', (connection) => {
+      if (process.env.NODE_ENV !== 'production') {
+        logger.debug('Connection released');
+      }
+    });
+
+    pool.on('error', (err) => {
+      logger.error('Database pool error:', err);
+    });
+  }
+  return pool;
+}
+
 async function testConnection() {
+  // If we've already tested, return cached result
+  if (connectionTested) {
+    return true;
+  }
+
+  const currentPool = getPool();
   let connection;
   try {
-    connection = await pool.getConnection();
-    await connection.ping(); // More reliable than just getting a connection
+    connection = await currentPool.getConnection();
+    await connection.ping();
     logger.info('✅ Database connection established successfully');
+    connectionTested = true;
     return true;
   } catch (error) {
-    logger.error('❌ Database connection failed:', error);
-    throw error; // Re-throw to handle at application level
+    logger.error('❌ Database connection failed:', error.message);
+    
+    if (process.env.NODE_ENV === 'production') {
+      return false; // Don't crash in production
+    }
+    throw error;
   } finally {
     if (connection) connection.release();
   }
 }
 
-// Enhanced query executor with error handling
 async function executeQuery(sql, params = []) {
-  console.log('sql:', sql);
-  console.log('params:', params);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('SQL:', sql);
+    console.log('Params:', params);
+  }
   
-  
+  const currentPool = getPool();
   let connection;
   try {
-    connection = await pool.getConnection();
+    connection = await currentPool.getConnection();
     const [rows] = await connection.execute(sql, params);
     return rows;
   } catch (error) {
     logger.error('Database query error:', {
-      sql: sql,
-      params: params,
-      error: error.message
+      error: error.message,
+      sql: sql.substring(0, 200) // Truncate long queries
     });
-    throw error; // Re-throw for controller to handle
+    throw error;
   } finally {
     if (connection) connection.release();
   }
 }
 
-// Graceful shutdown handler
 function gracefulShutdown() {
+  if (!pool) {
+    logger.info('No database pool to shutdown');
+    process.exit(0);
+    return;
+  }
+
+  logger.info('Shutting down database pool gracefully...');
   pool.end(err => {
     if (err) {
       logger.error('Error closing database pool:', err);
@@ -69,12 +113,17 @@ function gracefulShutdown() {
   });
 }
 
-// Handle process termination
-process.on('SIGTERM', gracefulShutdown);
-process.on('SIGINT', gracefulShutdown);
+// Handle process termination (useful for local development)
+if (process.env.NODE_ENV !== 'production') {
+  process.on('SIGTERM', gracefulShutdown);
+  process.on('SIGINT', gracefulShutdown);
+}
 
+// Export with getter for pool to maintain backward compatibility
 module.exports = {
-  pool,
+  get pool() {
+    return getPool();
+  },
   testConnection,
   executeQuery,
   gracefulShutdown

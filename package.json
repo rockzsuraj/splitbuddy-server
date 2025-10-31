@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "jest",
+    "dev": "nodemon local-server.js",
+    "start": "node local-server.js",
+    "vercel-dev": "vercel dev",
+    "build": "echo 'No build step'",
     "migrate": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
     "rollback": "knex migrate:rollback",

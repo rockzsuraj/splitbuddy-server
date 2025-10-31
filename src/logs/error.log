@@ -1,0 +1,111 @@
+2025-10-31 22:16:40 [[31merror[39m]: Error: Cannot find module './config/database'
+Require stack:
+- /Users/suraj.kumar/Desktop/splibuddy server/local.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddy server/local.js:3:28)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+2025-10-31 22:17:55 [[31merror[39m]: Error: Cannot find module './config/env'
+Require stack:
+- /Users/suraj.kumar/Desktop/splibuddy server/local.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddy server/local.js:4:18)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+2025-10-31 22:19:14 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splibuddy server/local.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-31 22:20:56 [[31merror[39m]: Database query error:
+2025-10-31 22:23:18 [[31merror[39m]: Database query error:
+2025-10-31 22:25:25 [[31merror[39m]: Database query error:
+2025-10-31 22:31:45 [[31merror[39m]: Database query error:
+2025-10-31 23:13:40 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:13:42 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:13:44 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:13:51 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:14:05 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:14:08 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:14:32 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:14:33 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:38:28 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:38:29 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:38:31 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:38:34 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:38:39 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splibuddy server/local.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-31 23:41:15 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splibuddy server/local.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-31 23:42:00 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:42:01 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 23:42:03 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splibuddy server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splibuddy server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)

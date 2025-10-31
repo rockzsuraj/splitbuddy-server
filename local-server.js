@@ -1,8 +1,8 @@
 const knex = require('knex/lib');
-const app = require('../app');
-const { testConnection } = require('./config/database');
-const { PORT } = require('./config/env');
-const logger = require('./utils/logger');
+const app = require('./app');
+const { testConnection } = require('./src/config/database');
+const { PORT } = require('./src/config/env');
+const logger = require('./src/utils/logger');
 
 async function startServer() {
   try {

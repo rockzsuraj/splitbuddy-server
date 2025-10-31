@@ -1,44 +1,40 @@
 const express = require('express');
-const path = require('path');
 const routes = require('./src/routes');
-const docsRouter = require('./src/routes/docs.routes'); // Add this import
 const { errorHandler } = require('./src/utils/apiError');
-const configureMiddleware = require('./src/config/middleware');
-const listEndpoints = require('express-list-endpoints');
 
 const app = express();
 
-// After all routes are defined
+// Middleware FIRST
+app.use(express.json());
 
-// Configure Pug
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'));
+// In app.js, after express.json()
+const cors = require('cors');
 
-// Configure middleware
-configureMiddleware(app);
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+}));
 
-// Serve Swagger UI assets
-// Add this before other middleware
-// Add this before other middleware
-app.use('/docs', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
+app.use(express.urlencoded({ extended: true }));
+
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: 'API is running 🚀',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
 });
 
-// Then mount your docs router
-app.use('/docs', require('./src/routes/docs.routes'));
-
-
-// API Documentation Routes
-app.use('/docs', docsRouter); // Mount docs router under /docs
+app.post('/test', (req, res) => {
+  console.log('Body:', req.body);
+  res.json({ ok: true, data: req.body });
+});
 
 // API routes
 app.use('/api', routes);
-console.log(listEndpoints(app));
 
-// Error handler
+// Error handler LAST
 app.use(errorHandler);
 
 module.exports = app;
