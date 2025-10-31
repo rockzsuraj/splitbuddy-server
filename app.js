@@ -5,7 +5,17 @@ const { errorHandler } = require('./src/utils/apiError');
 const app = express();
 
 // Middleware FIRST
-app.use(express.json());
+// ✅ FIX: Configure body parser with limits and verification
+app.use(express.json({
+  limit: '10mb', // Set reasonable limit
+  verify: (req, res, buf) => {
+    try {
+      JSON.parse(buf); // Verify JSON is valid
+    } catch (e) {
+      throw new Error('Invalid JSON');
+    }
+  }
+}));
 app.use(express.urlencoded({ extended: true }));
 
 // Root route - NO DB calls here
