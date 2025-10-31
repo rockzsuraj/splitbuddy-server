@@ -16,7 +16,20 @@ app.use(express.json({
     }
   }
 }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true,
+  limit: '10mb',
+  parameterLimit: 10000 // Increase if you have many form fields
+}));
+
+// ✅ FIX: Add raw body handling for specific routes if needed
+app.use((req, res, next) => {
+  if (req.method === 'GET' || req.method === 'DELETE') {
+    // Skip body parsing for GET/DELETE requests
+    return next();
+  }
+  next();
+});
 
 // Root route - NO DB calls here
 app.get('/', (req, res) => {
