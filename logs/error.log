@@ -1,0 +1,927 @@
+2025-06-25 11:26:32 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 11:38:14 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 11:38:21 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 11:38:28 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 12:53:01 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 12:55:11 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 12:55:49 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 12:57:00 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 13:00:03 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 13:00:08 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 13:00:58 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:58:8)
+    at process.emit (node:events:519:28)
+2025-06-25 13:01:03 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 13:01:22 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:58:8)
+    at process.emit (node:events:519:28)
+2025-06-25 14:12:29 [[31merror[39m]: Database query error:
+2025-06-25 14:13:02 [[31merror[39m]: Database query error:
+2025-06-25 14:15:41 [[31merror[39m]: Database query error:
+2025-06-25 14:17:30 [[31merror[39m]: Database query error:
+2025-06-25 14:17:37 [[31merror[39m]: Database query error:
+2025-06-25 14:17:38 [[31merror[39m]: Database query error:
+2025-06-25 14:17:38 [[31merror[39m]: Database query error:
+2025-06-25 14:17:38 [[31merror[39m]: Database query error:
+2025-06-25 14:17:38 [[31merror[39m]: Database query error:
+2025-06-25 14:17:38 [[31merror[39m]: Database query error:
+2025-06-25 14:22:25 [[31merror[39m]: Database query error:
+2025-06-25 14:22:47 [[31merror[39m]: Database query error:
+2025-06-25 14:22:52 [[31merror[39m]: Database query error:
+2025-06-25 14:29:45 [[31merror[39m]: Database query error:
+2025-06-25 14:29:51 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 14:30:23 [[31merror[39m]: Database query error:
+2025-06-25 14:30:49 [[31merror[39m]: Database query error:
+2025-06-25 14:31:44 [[31merror[39m]: Error: Access denied for user 'root'@'localhost' (using password: YES)
+    at Packet.asError (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:475:34)
+    at PacketParser.onPacket (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+2025-06-25 14:31:52 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 14:32:52 [[31merror[39m]: Database query error:
+2025-06-25 14:33:25 [[31merror[39m]: Database query error:
+2025-06-25 14:36:38 [[31merror[39m]: Database query error:
+2025-06-25 14:40:42 [[31merror[39m]: Database query error:
+2025-06-25 14:41:36 [[31merror[39m]: Database query error:
+2025-06-25 14:42:02 [[31merror[39m]: Database query error:
+2025-06-25 14:42:02 [[31merror[39m]: Database query error:
+2025-06-25 14:42:02 [[31merror[39m]: Database query error:
+2025-06-25 14:57:21 [[31merror[39m]: Database query error:
+2025-06-25 14:57:28 [[31merror[39m]: Database query error:
+2025-06-25 14:57:54 [[31merror[39m]: Database query error:
+2025-06-25 16:07:43 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-25 18:57:40 [[31merror[39m]: Database query error:
+2025-06-25 18:58:52 [[31merror[39m]: Database query error:
+2025-06-25 22:20:37 [[31merror[39m]: Database query error:
+2025-06-25 22:22:31 [[31merror[39m]: Database query error:
+2025-06-25 22:23:34 [[31merror[39m]: Database query error:
+2025-06-25 22:45:29 [[31merror[39m]: Database query error:
+2025-06-25 22:50:10 [[31merror[39m]: Database query error:
+2025-06-25 22:50:13 [[31merror[39m]: Database query error:
+2025-06-25 22:51:04 [[31merror[39m]: Database query error:
+2025-06-25 23:37:10 [[31merror[39m]: Database query error:
+2025-06-26 00:19:37 [[31merror[39m]: Database query error:
+2025-06-26 00:20:09 [[31merror[39m]: Database query error:
+2025-06-26 11:13:18 [[31merror[39m]: Database query error:
+2025-06-26 12:22:19 [[31merror[39m]: Database query error:
+2025-06-26 12:25:34 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:27:54 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:27:57 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:28:28 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:28:49 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:28:51 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:29:02 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:29:10 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:33:20 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:33:33 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:34:01 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:45:32 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:46:29 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:46:39 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 12:51:31 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:9:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-26 14:03:02 [[31merror[39m]: Database query error:
+2025-06-26 14:41:59 [[31merror[39m]: Database query error:
+2025-06-27 00:14:26 [[31merror[39m]: Database query error:
+2025-06-27 00:40:31 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-27 01:20:53 [[31merror[39m]: Database query error:
+2025-06-27 01:22:18 [[31merror[39m]: Database query error:
+2025-06-27 02:09:30 [[31merror[39m]: Database query error:
+2025-06-27 02:29:58 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-06-27 02:29:58 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-06-27 02:30:02 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-06-27 02:30:10 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-27 02:34:31 [[31merror[39m]: Database query error:
+2025-06-27 02:34:44 [[31merror[39m]: Database query error:
+2025-06-27 02:35:11 [[31merror[39m]: Database query error:
+2025-06-27 02:35:12 [[31merror[39m]: Database query error:
+2025-06-27 02:39:22 [[31merror[39m]: Database query error:
+2025-06-27 10:20:52 [[31merror[39m]: Database query error:
+2025-06-27 21:53:04 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-27 22:05:43 [[31merror[39m]: Database query error:
+2025-06-28 00:03:52 [[31merror[39m]: Database query error:
+2025-06-28 00:04:54 [[31merror[39m]: Database query error:
+2025-06-28 19:14:08 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'refreshToken')
+    at exports.refreshToken (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:86:41)
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at validateRequest (/Users/suraj.kumar/Desktop/splitbuddy-server/src/validations/auth.validation.js:18:3)
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at validateRequest (/Users/suraj.kumar/Desktop/splitbuddy-server/src/validations/auth.validation.js:18:3)
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at middleware (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express-validator/lib/middlewares/check.js:16:13)
+2025-06-28 23:39:29 [[31merror[39m]: Database query error:
+2025-06-29 11:53:32 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 12:26:07 [[31merror[39m]: Database query error:
+2025-06-29 12:28:30 [[31merror[39m]: Database query error:
+2025-06-29 12:29:22 [[31merror[39m]: Database query error:
+2025-06-29 12:33:21 [[31merror[39m]: Database query error:
+2025-06-29 12:36:10 [[31merror[39m]: Database query error:
+2025-06-29 12:44:13 [[31merror[39m]: Database query error:
+2025-06-29 12:46:34 [[31merror[39m]: Database query error:
+2025-06-29 12:48:43 [[31merror[39m]: Database query error:
+2025-06-29 12:52:35 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:68:41
+2025-06-29 12:55:25 [[31merror[39m]: ReferenceError: user is not defined
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:77:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 12:55:56 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:68:41
+2025-06-29 12:56:07 [[31merror[39m]: TypeError: this.res.status is not a function
+    at ApiResponse.send (/Users/suraj.kumar/Desktop/splitbuddy-server/src/utils/apiResponse.js:48:21)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:78:57
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 12:56:36 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:68:41
+2025-06-29 13:20:36 [[31merror[39m]: ReferenceError: useResponse is not defined
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:78:98
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 13:20:52 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:21:43 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:21:53 [[31merror[39m]: ReferenceError: user is not defined
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:84:111
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 13:22:02 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:22:09 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'id')
+    at generateTokens (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:26:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:78:77
+2025-06-29 13:23:51 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:25:33 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:26:57 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'id')
+    at generateTokens (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:26:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:81:77
+2025-06-29 13:29:40 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:29:56 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'id')
+    at generateTokens (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:26:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:81:77
+2025-06-29 13:31:08 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:31:17 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'id')
+    at generateTokens (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:26:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:85:77
+2025-06-29 13:31:49 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:31:57 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'id')
+    at generateTokens (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:26:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:85:77
+2025-06-29 13:32:13 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:32:22 [[31merror[39m]: TypeError: (intermediate value) is not iterable
+    at saveUserGoogle (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:173:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async processUserAuth (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:182:12)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:80:24
+2025-06-29 13:32:59 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:33:47 [[31merror[39m]: Database query error:
+2025-06-29 13:33:47 [[31merror[39m]: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:660:17
+    at Array.forEach (<anonymous>)
+    at PoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:652:22)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromisePoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:53:12)
+    at executeQuery (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:46:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async updateWithHashedToken (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:63:20)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:90:3
+2025-06-29 13:37:22 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 13:40:22 [[31merror[39m]: ReferenceError: findUserByGoogleId is not defined
+    at saveUserGoogle (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:177:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async processUserAuth (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/auth.service.js:182:12)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:80:24
+2025-06-29 13:41:24 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:143:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:70:41
+2025-06-29 14:35:14 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'name')
+    at authenticate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/middlewares/auth.middleware.js:37:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 16:14:22 [[31merror[39m]: Error: getaddrinfo ENOTFOUND oauth2.googleapis.com
+    at AxiosError.from (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:863:14)
+    at RedirectableRequest.handleRequestError (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:3191:25)
+    at RedirectableRequest.emit (node:events:519:28)
+    at eventHandlers.<computed> (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/follow-redirects/index.js:49:24)
+    at ClientRequest.emit (node:events:519:28)
+    at emitErrorEvent (node:_http_client:101:11)
+    at TLSSocket.socketErrorListener (node:_http_client:504:5)
+    at TLSSocket.emit (node:events:519:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at Axios.request (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/auth.controller.js:144:25)
+    at async /Users/suraj.kumar/Desktop/splitbuddy-server/src/routes/auth.routes.js:78:41
+2025-06-29 16:47:02 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'email')
+    at UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:67:17)
+    at exports.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/user.controller.js:33:34)
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/middlewares/auth.middleware.js:72:5
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at authenticate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/middlewares/auth.middleware.js:36:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 16:48:45 [[31merror[39m]: TypeError: Cannot read properties of undefined (reading 'email')
+    at UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:67:17)
+    at exports.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/controllers/user.controller.js:33:34)
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/src/middlewares/auth.middleware.js:72:5
+    at Layer.handle [as handle_request] (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/router/route.js:149:13)
+    at authenticate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/middlewares/auth.middleware.js:36:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 16:51:12 [[31merror[39m]: Database query error:
+2025-06-29 16:51:12 [[31merror[39m]: TypeError: Bind parameters must be array if namedPlaceholders parameter is not enabled
+    at PoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:648:15)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromisePoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:53:12)
+    at executeQuery (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:46:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async User.dynamicQueryUpdate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:186:22)
+    at async UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:107:5)
+2025-06-29 16:53:10 [[31merror[39m]: Database query error:
+2025-06-29 16:53:10 [[31merror[39m]: TypeError: Bind parameters must be array if namedPlaceholders parameter is not enabled
+    at PoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:648:15)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromisePoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:53:12)
+    at executeQuery (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:46:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async User.dynamicQueryUpdate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:186:22)
+    at async UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:112:5)
+2025-06-29 16:53:27 [[31merror[39m]: Database query error:
+2025-06-29 16:53:27 [[31merror[39m]: TypeError: Bind parameters must be array if namedPlaceholders parameter is not enabled
+    at PoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/base/connection.js:648:15)
+    at /Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromisePoolConnection.execute (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/mysql2/lib/promise/connection.js:53:12)
+    at executeQuery (/Users/suraj.kumar/Desktop/splitbuddy-server/src/config/database.js:46:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async User.dynamicQueryUpdate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:186:22)
+    at async UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:112:5)
+2025-06-29 16:55:00 [[31merror[39m]: TypeError: (intermediate value) is not iterable
+    at User.dynamicQueryUpdate (/Users/suraj.kumar/Desktop/splitbuddy-server/src/models/user.model.js:186:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:112:5)
+2025-06-29 16:55:39 [[31merror[39m]: ReferenceError: findById is not defined
+    at UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:115:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-29 16:55:51 [[31merror[39m]: TypeError: (intermediate value) is not iterable
+    at UserService.updateProfile (/Users/suraj.kumar/Desktop/splitbuddy-server/src/services/user.service.js:115:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-01 18:53:54 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-01 18:53:54 [[31merror[39m]: Error: write EIO
+    at afterWriteDispatched (node:internal/stream_base_commons:161:15)
+    at writeGeneric (node:internal/stream_base_commons:152:3)
+    at Socket._writeGeneric (node:net:954:11)
+    at Socket._write (node:net:966:8)
+    at writeOrBuffer (node:internal/streams/writable:570:12)
+    at _write (node:internal/streams/writable:499:10)
+    at Writable.write (node:internal/streams/writable:508:10)
+    at Console.log (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/winston/lib/winston/transports/console.js:87:23)
+    at Console._write (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/winston-transport/modern.js:82:19)
+    at doWrite (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/readable-stream/lib/_stream_writable.js:390:139)
+2025-07-04 11:48:49 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 11:50:18 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 11:50:31 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 11:50:35 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 11:50:59 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:01:31 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:02:43 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:03:49 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:06:48 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:07:08 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:07:19 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:08:51 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:32:03 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:32:43 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:33:00 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:34:14 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:35:41 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:35:51 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-04 12:35:57 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-06 14:38:37 [[31merror[39m]: Database query error:
+2025-07-06 15:46:47 [[31merror[39m]: Database query error:
+2025-07-06 15:47:54 [[31merror[39m]: Database query error:
+2025-07-06 15:49:27 [[31merror[39m]: Database query error:
+2025-07-09 21:01:21 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-09 21:22:16 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/splitbuddy-server/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/splitbuddy-server/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-07-09 22:34:15 [[31merror[39m]: Database query error:
+2025-10-30 21:17:18 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/SplitBuddy/backend/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/SplitBuddy/backend/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-30 21:50:43 [[31merror[39m]: Database query error:
+2025-10-30 21:52:42 [[31merror[39m]: Database query error:
+2025-10-30 22:59:19 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-30 22:59:37 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-30 23:00:17 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:00:22 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-30 23:53:13 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:53:13 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:53:13 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:53:20 [[31merror[39m]: Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1904:16)
+    at listenInCluster (node:net:1961:12)
+    at Server.listen (node:net:2063:7)
+    at Function.listen (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/express/lib/application.js:635:24)
+    at startServer (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/server.js:10:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-30 23:54:43 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:54:43 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-30 23:54:44 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 00:00:05 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 00:00:05 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 00:00:05 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 00:00:35 [[31merror[39m]: TypeError: (intermediate value) is not iterable
+    at saveUserGoogle (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/models/user.model.js:177:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async processUserAuth (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/services/auth.service.js:180:12)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:88:24
+2025-10-31 00:06:06 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/controllers/auth.controller.js:138:25)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:78:41
+2025-10-31 00:07:51 [[31merror[39m]: Database query error:
+2025-10-31 00:07:51 [[31merror[39m]: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+    at /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/base/connection.js:660:17
+    at Array.forEach (<anonymous>)
+    at PoolConnection.execute (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/base/connection.js:652:22)
+    at /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/connection.js:56:11
+    at new Promise (<anonymous>)
+    at PromisePoolConnection.execute (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/connection.js:53:12)
+    at executeQuery (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:46:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async updateWithHashedToken (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/models/user.model.js:63:20)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:98:3
+2025-10-31 00:08:28 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/controllers/auth.controller.js:138:25)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:78:41
+2025-10-31 00:08:44 [[31merror[39m]: TypeError: (intermediate value) is not iterable
+    at saveUserGoogle (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/models/user.model.js:179:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async processUserAuth (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/services/auth.service.js:180:12)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:88:24
+2025-10-31 00:09:22 [[31merror[39m]: AxiosError: Request failed with status code 400
+    at settle (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:2053:12)
+    at Unzip.handleStreamEnd (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:3170:11)
+    at Unzip.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1696:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/axios/dist/node/axios.cjs:4280:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handleGoogleCallback (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/controllers/auth.controller.js:138:25)
+    at async /Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/routes/auth.routes.js:78:41
+2025-10-31 02:09:58 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 02:09:58 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)
+2025-10-31 02:10:03 [[31merror[39m]: Error: Can't add new command when connection is in closed state
+    at PromisePool.end (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/node_modules/mysql2/lib/promise/pool.js:72:22)
+    at process.gracefulShutdown (/Users/suraj.kumar/Desktop/SplitBuddy/packages/backend/src/config/database.js:62:8)
+    at process.emit (node:events:519:28)

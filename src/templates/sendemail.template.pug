@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Password Reset
+  body(style="font-family: Arial, sans-serif; line-height: 1.6;")
+    .container(style="max-width: 600px; margin: 0 auto; padding: 20px;")
+      h1(style="color: #333;") Hi #{username},
+      p(style="color: #555;") You requested to reset your password. Click the button below to proceed:
+      a(href=resetLink, style="display: inline-block; background: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 20px 0;") Reset Password
+      p(style="color: #555;") This link will expire in #{expiryTime}.
+      p(style="color: #555;") If you didn't request this, please ignore this email or contact support at #{supportEmail}.
+      p(style="color: #555; margin-top: 30px;") Regards,
+      p(style="color: #555;") The #{process.env.APP_NAME} Team
