@@ -4,32 +4,44 @@ const { errorHandler } = require('./src/utils/apiError');
 
 const app = express();
 
-// Middleware FIRST
-// ✅ FIX: Configure body parser with limits and verification
-app.use(express.json({
-  limit: '10mb', // Set reasonable limit
-  verify: (req, res, buf) => {
-    try {
-      JSON.parse(buf); // Verify JSON is valid
-    } catch (e) {
-      throw new Error('Invalid JSON');
-    }
-  }
-}));
-app.use(express.urlencoded({
-  extended: true,
-  limit: '10mb',
-  parameterLimit: 10000 // Increase if you have many form fields
-}));
-
-// ✅ FIX: Add raw body handling for specific routes if needed
 app.use((req, res, next) => {
-  if (req.method === 'GET' || req.method === 'DELETE') {
-    // Skip body parsing for GET/DELETE requests
+  // Skip body parsing for GET, HEAD, OPTIONS, DELETE requests
+  if (['GET', 'HEAD', 'OPTIONS', 'DELETE'].includes(req.method)) {
     return next();
+  }
+  
+  // Only parse JSON for POST, PUT, PATCH requests
+  if (req.headers['content-type'] === 'application/json') {
+    return express.json({
+      limit: '10mb',
+      verify: (req, res, buf) => {
+        try {
+          if (buf && buf.length > 0) {
+            JSON.parse(buf);
+          }
+        } catch (e) {
+          throw new Error('Invalid JSON');
+        }
+      }
+    })(req, res, next);
+  }
+  
+  // Parse URL-encoded for form submissions
+  return express.urlencoded({
+    extended: true,
+    limit: '10mb'
+  })(req, res, next);
+});
+
+// ✅ FIX: Add middleware to handle empty bodies
+app.use((req, res, next) => {
+  // If it's a GET request, explicitly set body to undefined
+  if (req.method === 'GET' || req.method === 'DELETE') {
+    req.body = undefined;
   }
   next();
 });
+
 
 // Root route - NO DB calls here
 app.get('/', (req, res) => {
