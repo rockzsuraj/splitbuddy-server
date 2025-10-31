@@ -1,56 +1,63 @@
-const fs = require('fs');
 const path = require('path');
 const winston = require('winston');
 
 const { combine, timestamp, printf, colorize, json, errors } = winston.format;
 
-// Ensure logs directory exists (safe for serverless / local)
-const logDir = path.join(__dirname, '../logs');
-if (!fs.existsSync(logDir)) {
-  try {
-    fs.mkdirSync(logDir, { recursive: true });
-  } catch (err) {
-    console.warn('⚠️ Failed to create logs directory:', err.message);
-  }
-}
+// Detect if running in a serverless environment (Vercel, AWS Lambda, etc.)
+const isServerless =
+  process.env.VERCEL === '1' ||
+  process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  process.env.IS_SERVERLESS === 'true';
 
 // Define log format for development
 const devFormat = printf(({ level, message, timestamp, stack }) => {
   return `${timestamp} [${level}]: ${stack || message}`;
 });
 
-// Winston logger configuration
+const transports = [
+  new winston.transports.Console({
+    handleExceptions: true,
+  }),
+];
+
+// Only use file-based logging when not serverless
+if (!isServerless) {
+  const fs = require('fs');
+  const logDir = path.join(__dirname, '../logs');
+
+  try {
+    if (!fs.existsSync(logDir)) {
+      fs.mkdirSync(logDir, { recursive: true });
+    }
+
+    transports.push(
+      new winston.transports.File({
+        filename: path.join(logDir, 'error.log'),
+        level: 'error',
+        handleExceptions: true,
+      }),
+      new winston.transports.File({
+        filename: path.join(logDir, 'combined.log'),
+      })
+    );
+  } catch (err) {
+    console.warn('⚠️ Could not create or access logs directory:', err.message);
+  }
+}
+
+// Create the logger
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: combine(
-    errors({ stack: true }), // Capture stack traces
+    errors({ stack: true }),
     timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    process.env.NODE_ENV === 'production' ? json() : combine(colorize(), devFormat)
+    isServerless ? json() : combine(colorize(), devFormat)
   ),
-  transports: [
-    // Always log to console (Vercel / AWS Lambda logs read from stdout)
-    new winston.transports.Console({
-      handleExceptions: true,
-    }),
-
-    // Only log to files if not serverless
-    ...(process.env.IS_SERVERLESS
-      ? []
-      : [
-          new winston.transports.File({
-            filename: path.join(logDir, 'error.log'),
-            level: 'error',
-            handleExceptions: true,
-          }),
-          new winston.transports.File({
-            filename: path.join(logDir, 'combined.log'),
-          }),
-        ]),
-  ],
+  transports,
   exitOnError: false,
 });
 
-// Create Morgan-compatible stream
+// Morgan-compatible stream
 logger.morganStream = {
   write: (message) => {
     logger.info(message.trim());
