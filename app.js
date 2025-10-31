@@ -6,18 +6,9 @@ const app = express();
 
 // Middleware FIRST
 app.use(express.json());
-
-// In app.js, after express.json()
-const cors = require('cors');
-
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
-
 app.use(express.urlencoded({ extended: true }));
 
-// Root route
+// Root route - NO DB calls here
 app.get('/', (req, res) => {
   res.status(200).json({ 
     message: 'API is running 🚀',
@@ -26,9 +17,30 @@ app.get('/', (req, res) => {
   });
 });
 
+// Test endpoint without DB
 app.post('/test', (req, res) => {
-  console.log('Body:', req.body);
   res.json({ ok: true, data: req.body });
+});
+
+// Health check with DB test (but don't block startup)
+app.get('/health', async (req, res) => {
+  try {
+    const { testConnection } = require('./src/config/database');
+    const dbStatus = await testConnection();
+    
+    res.status(200).json({ 
+      status: 'OK', 
+      timestamp: new Date().toISOString(),
+      database: dbStatus ? 'connected' : 'disconnected'
+    });
+  } catch (error) {
+    res.status(200).json({
+      status: 'DEGRADED',
+      timestamp: new Date().toISOString(),
+      database: 'disconnected',
+      error: error.message
+    });
+  }
 });
 
 // API routes
