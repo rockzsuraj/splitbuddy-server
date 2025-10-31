@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 const logger = require('../utils/logger');
 
-// Use lazy initialization with fast timeouts
+// Use lazy initialization with valid configuration options
 let pool;
 let connectionTested = false;
 
@@ -14,16 +14,15 @@ function getPool() {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       waitForConnections: true,
-      connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 5, // Reduced for serverless
+      connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 5,
       queueLimit: parseInt(process.env.DB_QUEUE_LIMIT) || 0,
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,
       charset: process.env.DB_CHARSET || 'utf8mb4',
       
-      // ✅ Critical: Fast timeouts for serverless
+      // ✅ Valid mysql2 options for connection pool
       acquireTimeout: 10000, // 10 seconds max to get connection
       timeout: 10000, // 10 seconds query timeout
-      reconnect: false, // Disable auto-reconnect in serverless
       
       // ✅ SSL for Aiven
       ssl: process.env.DB_SSL === 'true' ? {
@@ -31,7 +30,7 @@ function getPool() {
       } : false
     });
 
-    // Connection event handlers
+    // Connection event handlers for debugging
     pool.on('acquire', (connection) => {
       if (process.env.NODE_ENV !== 'production') {
         logger.debug('Connection acquired');
@@ -44,6 +43,12 @@ function getPool() {
       }
     });
 
+    pool.on('enqueue', () => {
+      if (process.env.NODE_ENV !== 'production') {
+        logger.debug('Waiting for available connection slot');
+      }
+    });
+
     pool.on('error', (err) => {
       logger.error('Database pool error:', err);
     });
@@ -52,7 +57,7 @@ function getPool() {
 }
 
 async function testConnection() {
-  // Skip connection test in serverless environment
+  // Skip connection test in serverless environment to avoid cold start issues
   if (process.env.VERCEL) {
     logger.info('⏩ Skipping connection test in serverless environment');
     return true;
@@ -84,6 +89,7 @@ async function testConnection() {
 }
 
 async function executeQuery(sql, params = []) {
+  // Only log in development
   if (process.env.NODE_ENV !== 'production') {
     console.log('SQL:', sql);
     console.log('Params:', params);
@@ -98,7 +104,7 @@ async function executeQuery(sql, params = []) {
   } catch (error) {
     logger.error('Database query error:', {
       error: error.message,
-      sql: sql.substring(0, 200)
+      sql: sql.substring(0, 200) // Truncate long queries in logs
     });
     throw error;
   } finally {
@@ -106,15 +112,39 @@ async function executeQuery(sql, params = []) {
   }
 }
 
-// Remove graceful shutdown for serverless (not needed)
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-  process.on('SIGTERM', gracefulShutdown);
-  process.on('SIGINT', gracefulShutdown);
+// Execute transaction (useful for multiple related queries)
+async function executeTransaction(queries) {
+  const currentPool = getPool();
+  let connection;
+  try {
+    connection = await currentPool.getConnection();
+    await connection.beginTransaction();
+    
+    const results = [];
+    for (const query of queries) {
+      const [rows] = await connection.execute(query.sql, query.params);
+      results.push(rows);
+    }
+    
+    await connection.commit();
+    return results;
+  } catch (error) {
+    if (connection) {
+      await connection.rollback();
+    }
+    logger.error('Transaction failed:', error);
+    throw error;
+  } finally {
+    if (connection) connection.release();
+  }
 }
 
 function gracefulShutdown() {
-  if (!pool) return;
-  
+  if (!pool) {
+    logger.info('No database pool to shutdown');
+    return;
+  }
+
   logger.info('Shutting down database pool gracefully...');
   pool.end(err => {
     if (err) {
@@ -125,11 +155,18 @@ function gracefulShutdown() {
   });
 }
 
+// Only add graceful shutdown for local development (not serverless)
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  process.on('SIGTERM', gracefulShutdown);
+  process.on('SIGINT', gracefulShutdown);
+}
+
 module.exports = {
   get pool() {
     return getPool();
   },
   testConnection,
   executeQuery,
+  executeTransaction,
   gracefulShutdown
 };
