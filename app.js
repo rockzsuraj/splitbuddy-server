@@ -10,21 +10,18 @@ app.use((req, res, next) => {
     return next();
   }
   
-  // Only parse JSON for POST, PUT, PATCH requests
-  if (req.headers['content-type'] === 'application/json') {
-    return express.json({
-      limit: '10mb',
-      verify: (req, res, buf) => {
-        try {
-          if (buf && buf.length > 0) {
-            JSON.parse(buf);
-          }
-        } catch (e) {
-          throw new Error('Invalid JSON');
-        }
-      }
-    })(req, res, next);
-  }
+app.use((req, res, next) => {
+  // Skip body parsing for GET or HEAD requests
+  if (req.method === 'GET' || req.method === 'HEAD') return next();
+  express.json()(req, res, (err) => {
+    if (err) {
+      console.error('JSON parse error:', err.message);
+      return res.status(400).json({ error: 'Invalid JSON or content length mismatch' });
+    }
+    express.urlencoded({ extended: true })(req, res, next);
+  });
+});
+
   
   // Parse URL-encoded for form submissions
   return express.urlencoded({
