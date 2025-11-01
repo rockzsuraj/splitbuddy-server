@@ -18,12 +18,7 @@ function getPool() {
       queueLimit: parseInt(process.env.DB_QUEUE_LIMIT) || 0,
       enableKeepAlive: true,
       keepAliveInitialDelay: 0,
-      charset: process.env.DB_CHARSET || 'utf8mb4',
-      
-      // ✅ Valid mysql2 options for connection pool
-      acquireTimeout: 10000, // 10 seconds max to get connection
-      timeout: 10000, // 10 seconds query timeout
-      
+      charset: process.env.DB_CHARSET || 'utf8mb4',      
       // ✅ SSL for Aiven
       ssl: process.env.DB_SSL === 'true' ? {
         rejectUnauthorized: false
