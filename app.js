@@ -7,11 +7,11 @@ const app = express();
 
 // ✅ CORS middleware (MUST come before routes)
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://splitbuddy-1.netlify.app'], // 👈 allowed origins
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // if you ever use cookies/session
+  origin: "*", // or specify your frontend URL instead of "*"
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
   
 app.use((req, res, next) => {
   // Skip body parsing for GET or HEAD requests
