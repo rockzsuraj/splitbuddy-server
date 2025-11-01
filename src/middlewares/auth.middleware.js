@@ -6,83 +6,82 @@ const User = require('../models/user.model');
 const { sanitizeUser } = require('../utils/helper');
 const { refreshToken } = require('../controllers/auth.controller');
 
-/**
- * Authentication middleware
- */
 const authenticate = async (req, res, next) => {
   try {
-    // 1. Get token from header/cookies
-    const token = req?.cookies?.accessToken || req.headers.authorization?.split(' ')[1];
+    // 1. Get token with null coalescing operator for cleaner code
+    const token = req?.cookies?.accessToken ?? req.headers?.authorization?.split(' ')[1];
     
     if (!token) {
-      throw new ApiError(401, 'Authentication required');
+      return next(new ApiError(401, 'Authentication required'));
     }
 
-    // 2. Verify token
-    const decoded = jwt.verify(token, JWT_SECRET);
-    
-    // 3. Attach user to request
-
-    const existUser = await User.findById(decoded.userId);
-
-    if (!existUser) {
-      throw next(new ApiError(401, 'User no longer exist'))
-    }
-    const sanitizedUser = sanitizeUser(existUser);
-
-    req.user = sanitizedUser;
-
-    logger.info(`Authenticated user ${decoded.userId}`);
-    next();
-  } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      return next(new ApiError(401, 'Token expired', 'TOKEN_EXPIRED'));
-    }
-    if (err.name === 'JsonWebTokenError') {
+    // 2. Add try-catch specifically for token verification
+    let decoded;
+    try {
+      decoded = jwt.verify(token, JWT_SECRET);
+    } catch (tokenError) {
+      if (tokenError.name === 'TokenExpiredError') {
+        return next(new ApiError(401, 'Token expired', 'TOKEN_EXPIRED'));
+      }
       return next(new ApiError(401, 'Invalid token', 'INVALID_TOKEN'));
     }
-    next(err);
+
+    // 3. Add timeout for database query
+    const existUser = await Promise.race([
+      User.findById(decoded.userId),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Database timeout')), 5000)
+      )
+    ]);
+
+    if (!existUser) {
+      return next(new ApiError(401, 'User no longer exists'));
+    }
+
+    req.user = sanitizeUser(existUser);
+    
+    // 4. Move logger after successful authentication
+    logger.info(`User authenticated: ${decoded.userId}`);
+    return next();
+    
+  } catch (err) {
+    if (err.message === 'Database timeout') {
+      return next(new ApiError(503, 'Service temporarily unavailable'));
+    }
+    return next(err);
   }
 };
 
-/**
- * Role-based authorization middleware
- */
-// Middleware to authorize based on roles
+// Improved authorize middleware
 const authorize = (roles = []) => {
-  // If roles is a string, convert it to an array (for convenience)
-  if (typeof roles === 'string') {
-    roles = [roles];
-  }
-
   return (req, res, next) => {
-
-      console.log('decoded', req);
-  
-    // Check if user exists and has a role
-    if (!req.user?.role) {
+    // Convert to array if string
+    const allowedRoles = Array.isArray(roles) ? roles : [roles];
+    
+    if (!req?.user?.role) {
       return next(new ApiError(401, 'Unauthorized - No user role found'));
     }
 
-    // Check if user's role is included in allowed roles
-    if (!roles.includes(req.user.role)) {
+    if (!allowedRoles.includes(req.user.role)) {
       return next(new ApiError(403, 'Forbidden - Insufficient permissions'));
     }
 
-    next();
+    return next();
   };
 };
 
-// Middleware to handle token refresh
-const handleTokenRefresh = async (err, req, res, next) => {
-  if (err.name === 'TokenExpiredError') {
-    return refreshToken(req, res, next);
+// Improved token refresh handler
+const handleTokenRefresh = async (req, res, next) => {
+  try {
+    const result = await refreshToken(req, res, next);
+    return result;
+  } catch (err) {
+    return next(new ApiError(401, 'Token refresh failed'));
   }
-  next(err);
 };
 
 module.exports = {
   authenticate,
-  authorize,
+  authorize, 
   handleTokenRefresh
 };

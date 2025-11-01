@@ -25,7 +25,7 @@ class Group {
             SELECT ug.group_id, ug.group_name, ug.description, ug.created_at, ugm.user_id, ugm.joined_at
             FROM user_groups AS ug INNER JOIN user_group_members
             AS ugm
-            ON ug.group_id = umg.group_id
+            ON ug.group_id = ugm.group_id
             WHERE ugm.user_id = ?
             `,
             [user_id]
