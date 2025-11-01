@@ -3,12 +3,6 @@ const routes = require('./src/routes');
 const { errorHandler } = require('./src/utils/apiError');
 
 const app = express();
-
-app.use((req, res, next) => {
-  // Skip body parsing for GET, HEAD, OPTIONS, DELETE requests
-  if (['GET', 'HEAD', 'OPTIONS', 'DELETE'].includes(req.method)) {
-    return next();
-  }
   
 app.use((req, res, next) => {
   // Skip body parsing for GET or HEAD requests
@@ -20,14 +14,6 @@ app.use((req, res, next) => {
     }
     express.urlencoded({ extended: true })(req, res, next);
   });
-});
-
-  
-  // Parse URL-encoded for form submissions
-  return express.urlencoded({
-    extended: true,
-    limit: '10mb'
-  })(req, res, next);
 });
 
 // ✅ FIX: Add middleware to handle empty bodies
