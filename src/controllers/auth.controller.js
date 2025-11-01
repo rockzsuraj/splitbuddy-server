@@ -16,11 +16,20 @@ const register = async (req, res, next) => {
   }
 };
 
+// src/controllers/auth.controller.js
 const login = async (req, res, next) => {
   try {
-    const { email, password, username } = req.body;
-    const authData = await authService.login(email, password, username);
-    new ApiResponse(res, { data: authData }).send('Login successful', authData);
+    // Add timeout for long operations
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Operation timed out')), 8000)
+    );
+    
+    const authResult = await Promise.race([
+      authService.login(email, password, username),
+      timeoutPromise
+    ]);
+    
+    new ApiResponse(res, { data: authResult }).send('Login successful');
   } catch (err) {
     next(err);
   }

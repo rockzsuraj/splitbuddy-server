@@ -200,3 +200,13 @@
 2025-11-01 12:16:38 [[32minfo[39m]: ✅ Database connection established successfully
 2025-11-01 12:16:38 [[32minfo[39m]: Server running on port 3000
 2025-11-01 12:17:27 [[32minfo[39m]: User authenticated: 2
+2025-11-01 12:21:09 [[32minfo[39m]: ✅ Database connection established successfully
+2025-11-01 12:21:09 [[32minfo[39m]: Server running on port 3000
+2025-11-01 12:21:42 [[32minfo[39m]: ✅ Database connection established successfully
+2025-11-01 12:21:42 [[32minfo[39m]: Server running on port 3000
+2025-11-01 12:22:31 [[32minfo[39m]: ✅ Database connection established successfully
+2025-11-01 12:22:31 [[32minfo[39m]: Server running on port 3000
+2025-11-01 12:23:17 [[32minfo[39m]: ✅ Database connection established successfully
+2025-11-01 12:23:17 [[32minfo[39m]: Server running on port 3000
+2025-11-01 12:23:41 [[31merror[39m]: ❌ Database connection failed:
+2025-11-01 12:23:41 [[32minfo[39m]: Server running on port 3000
