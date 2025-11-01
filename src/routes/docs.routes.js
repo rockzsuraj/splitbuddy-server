@@ -5,7 +5,8 @@ const YAML = require('yamljs');
 const swaggerUi = require('swagger-ui-express');
 
 // 1. Load your local Swagger file
-const swaggerSpec = YAML.load(path.resolve(__dirname, '../docs/swagger.yaml'));
+const swaggerPath = path.resolve(__dirname, '../docs/swagger.yaml');
+const swaggerSpec = YAML.load(swaggerPath);
 
 // 2. Disable Petstore and external references
 // const swaggerOptions = {
@@ -38,6 +39,7 @@ router.get('/json', (req, res) => res.json(swaggerSpec));
 
 // 4. Serve UI (with no external calls)
 router.use('/', swaggerUi.serve);
-router.get('/', swaggerUi.setup(null, swaggerOptions)); // Pass `null` to avoid default Petstore
+router.get('/', swaggerUi.setup(null, swaggerOptions));
+
 
 module.exports = router;
