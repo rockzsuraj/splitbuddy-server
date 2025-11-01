@@ -7,3 +7,6 @@
   to = "/.netlify/functions/server"
   status = 200
   force = true
+
+[functions]
+  included_files = ["src/docs/swagger.yaml"]
