@@ -19,9 +19,17 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const { email, password, username } = req.body;
-    const authData = await authService.login(email, password, username);
-    new ApiResponse(res, { data: authData }).send('Login successful', authData);
+
+    if (!email || !password) {
+      throw new ApiError.BadRequest('Email and password are required');
+    }
+    const authResult = await authService.login(email, password, username);
+    new ApiResponse(res, { data: authResult }).send('Login successful');
   } catch (err) {
+    // If you want to still support timeout, handle it gracefully:
+    if (err.message === 'Operation timed out') {
+      return next(new ApiError.RequestTimeout('Login operation took too long'));
+    }
     next(err);
   }
 };

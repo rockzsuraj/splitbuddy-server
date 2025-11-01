@@ -1,167 +1,74 @@
-const mysql = require('mysql2/promise');
-const logger = require('../utils/logger');
-
-// Use lazy initialization with valid configuration options
+// ...existing code...
+/*
+  DB wrapper: prefer @neondatabase/serverless.createPool if available,
+  otherwise fall back to pg.Pool for local testing.
+*/
+const debug = require('debug')('app:db');
 let pool;
-let connectionTested = false;
 
-function getPool() {
-  if (!pool) {
-    pool = mysql.createPool({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT || 3306,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      waitForConnections: true,
-      connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 5,
-      queueLimit: parseInt(process.env.DB_QUEUE_LIMIT) || 0,
-      enableKeepAlive: true,
-      keepAliveInitialDelay: 0,
-      charset: process.env.DB_CHARSET || 'utf8mb4',      
-      // ✅ SSL for Aiven
-      ssl: process.env.DB_SSL === 'true' ? {
-        rejectUnauthorized: false
-      } : false
-    });
+function initPool() {
+  if (pool) return pool;
+  const DATABASE_URL = process.env.DATABASE_URL;
+  if (!DATABASE_URL) throw new Error('DATABASE_URL is not set');
 
-    // Connection event handlers for debugging
-    pool.on('acquire', (connection) => {
-      if (process.env.NODE_ENV !== 'production') {
-        logger.debug('Connection acquired');
-      }
-    });
-
-    pool.on('release', (connection) => {
-      if (process.env.NODE_ENV !== 'production') {
-        logger.debug('Connection released');
-      }
-    });
-
-    pool.on('enqueue', () => {
-      if (process.env.NODE_ENV !== 'production') {
-        logger.debug('Waiting for available connection slot');
-      }
-    });
-
-    pool.on('error', (err) => {
-      logger.error('Database pool error:', err);
-    });
+  // try neondatabase/serverless first
+  try {
+    const neon = require('@neondatabase/serverless');
+    if (neon && typeof neon.createPool === 'function') {
+      pool = neon.createPool(DATABASE_URL);
+      debug('Using @neondatabase/serverless pool');
+      return pool;
+    }
+    debug('@neondatabase/serverless present but createPool not found, falling back to pg');
+  } catch (e) {
+    debug('No @neondatabase/serverless available, falling back to pg:', e.message);
   }
+
+  // fallback to pg Pool
+  const { Pool } = require('pg');
+  pool = new Pool({
+    connectionString: DATABASE_URL,
+    // tune as needed
+    max: parseInt(process.env.DB_MAX_CLIENTS, 10) || 5,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 10000,
+  });
+  debug('Using pg.Pool');
   return pool;
 }
 
-async function testConnection() {
-  // Skip connection test in serverless environment to avoid cold start issues
-  if (process.env.VERCEL) {
-    logger.info('⏩ Skipping connection test in serverless environment');
-    return true;
-  }
-
-  if (connectionTested) {
-    return true;
-  }
-
-  const currentPool = getPool();
-  let connection;
-  try {
-    connection = await currentPool.getConnection();
-    await connection.ping();
-    logger.info('✅ Database connection established successfully');
-    connectionTested = true;
-    return true;
-  } catch (error) {
-    logger.error('❌ Database connection failed:', error.message);
-    
-    // In production, don't crash the app
-    if (process.env.NODE_ENV === 'production') {
-      return false;
-    }
-    throw error;
-  } finally {
-    if (connection) connection.release();
-  }
+// convert MySQL-style '?' placeholders to Postgres $1, $2, ...
+function convertPlaceholders(sql) {
+  if (!sql || typeof sql !== 'string') return sql;
+  // remove MySQL backticks
+  let cleaned = sql.replace(/`/g, '');
+  let i = 0;
+  cleaned = cleaned.replace(/\?/g, () => `$${++i}`);
+  return cleaned;
 }
 
 async function executeQuery(sql, params = []) {
-  // Only log in development
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('SQL:', sql);
-    console.log('Params:', params);
-  }
-  
-  const currentPool = getPool();
-  let connection;
-  try {
-    connection = await currentPool.getConnection();
-    const [rows] = await connection.execute(sql, params);
-    return rows;
-  } catch (error) {
-    logger.error('Database query error:', {
-      error: error.message,
-      sql: sql.substring(0, 200) // Truncate long queries in logs
-    });
-    throw error;
-  } finally {
-    if (connection) connection.release();
-  }
-}
+  const poolInstance = initPool();
+  const pgSql = convertPlaceholders(sql);
 
-// Execute transaction (useful for multiple related queries)
-async function executeTransaction(queries) {
-  const currentPool = getPool();
-  let connection;
-  try {
-    connection = await currentPool.getConnection();
-    await connection.beginTransaction();
-    
-    const results = [];
-    for (const query of queries) {
-      const [rows] = await connection.execute(query.sql, query.params);
-      results.push(rows);
+  // handle both pool.query and pool.connect APIs
+  if (typeof poolInstance.query === 'function') {
+    // pool.query works for both neon and pg
+    return poolInstance.query(pgSql, params);
+  } else {
+    // defensive: try connect/release
+    const client = await poolInstance.connect();
+    try {
+      return await client.query(pgSql, params);
+    } finally {
+      try { client.release(); } catch (_) {}
     }
-    
-    await connection.commit();
-    return results;
-  } catch (error) {
-    if (connection) {
-      await connection.rollback();
-    }
-    logger.error('Transaction failed:', error);
-    throw error;
-  } finally {
-    if (connection) connection.release();
   }
-}
-
-function gracefulShutdown() {
-  if (!pool) {
-    logger.info('No database pool to shutdown');
-    return;
-  }
-
-  logger.info('Shutting down database pool gracefully...');
-  pool.end(err => {
-    if (err) {
-      logger.error('Error closing database pool:', err);
-    } else {
-      logger.info('Database pool closed gracefully');
-    }
-  });
-}
-
-// Only add graceful shutdown for local development (not serverless)
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-  process.on('SIGTERM', gracefulShutdown);
-  process.on('SIGINT', gracefulShutdown);
 }
 
 module.exports = {
-  get pool() {
-    return getPool();
-  },
-  testConnection,
+  initPool,
   executeQuery,
-  executeTransaction,
-  gracefulShutdown
+  convertPlaceholders,
 };
+// ...existing code...
