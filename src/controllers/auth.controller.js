@@ -19,18 +19,18 @@ const register = async (req, res, next) => {
 // src/controllers/auth.controller.js
 const login = async (req, res, next) => {
   try {
-    // Add timeout for long operations
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Operation timed out')), 8000)
-    );
-    
-    const authResult = await Promise.race([
-      authService.login(email, password, username),
-      timeoutPromise
-    ]);
-    
+    const { email, password, username } = req.body;
+
+    if (!email || !password) {
+      throw new ApiError.BadRequest('Email and password are required');
+    }
+    const authResult = await authService.login(email, password, username);
     new ApiResponse(res, { data: authResult }).send('Login successful');
   } catch (err) {
+    // If you want to still support timeout, handle it gracefully:
+    if (err.message === 'Operation timed out') {
+      return next(new ApiError.RequestTimeout('Login operation took too long'));
+    }
     next(err);
   }
 };

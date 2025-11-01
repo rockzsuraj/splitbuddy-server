@@ -31,28 +31,33 @@ async function generateTokens(user) {
 }
 
 async function validateCredentials(email, username, password) {
-  console.log('Validating credentials for:', email);
+  console.log('Validating credentials for:', email || username);
+
   if ((!email && !username) || !password) {
-    throw new Error('Email OR Username and password are required');
-  }
-  if (email && username) {
-    throw new Error('Please provide either email or username, not both');
+    throw new ApiError.BadRequest('Email/Username and password are required');
   }
 
-  // Find user by email or username
-  let user;
+  // Find user
+  let user = null;
   if (email) {
     user = await findByEmail(email);
-  } else if (username) {
+  } else {
     user = await findByUsername(username);
   }
+  console.log('user', user);
   if (!user) {
     throw new ApiError.NotFoundError('User not found');
   }
+
+  if (!user.password) {
+    throw new ApiError.InternalServerError('User record missing password hash');
+  }
+
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error('Invalid email or password');
+    throw new ApiError.UnauthorizedError('Invalid email or password');
   }
+
   return user;
 }
 
@@ -62,13 +67,17 @@ async function login(email, password, username) {
 
   const { access_token, refresh_token, tokenSignature, refreshTokenHash } = await generateTokens(validUser);
   if (!access_token || !refresh_token) {
-    throw new ApiError.InternalServerError('Failed to generate token');
+    throw new ApiError.InternalServerError('Failed to generate tokens');
   }
+
   await updateWithHashedToken(sanitizedUser.id, refreshTokenHash, tokenSignature);
 
-  return { user: sanitizedUser, token: access_token, refreshToken: refresh_token };
+  return {
+    user: sanitizedUser,
+    token: access_token,
+    refreshToken: refresh_token,
+  };
 }
-
 async function logout(id) {
   await logOutUser(id);
 }
@@ -76,6 +85,8 @@ async function logout(id) {
 async function register(username, first_name, last_name, email, password) {
   // Validate input and check for existing user
   const existingUser = await findByEmail(email);
+  console.log('existingUser', existingUser);
+  
   if (existingUser) {
     throw new ApiError.ConflictError('User already exists');
   }
