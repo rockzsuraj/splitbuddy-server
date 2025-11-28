@@ -72,7 +72,7 @@
       const password = document.getElementById("password").value.trim();
 
       try {
-        const res = await fetch("https://splitbuddy-1.netlify.app/netlify/functions/api/v1/auth/login", {
+        const res = await fetch("https://splitbuddy-1.netlify.app/api/v1/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),

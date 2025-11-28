@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller'); // Verify this path
-const { validate, authValidation, refreshTokenValidation, forgotPasswordValidation, resetPasswordValidation } = require('../validations/auth.validation')
+const {
+  validate,
+  authValidation,
+  refreshTokenValidation,
+  forgotPasswordValidation,
+  resetPasswordValidation,
+  changePasswordValidation,
+  updateAvatar
+} = require('../validations/auth.validation')
 
 const rateLimit = require('express-rate-limit');
 const { authenticate, authorize } = require('../middlewares/auth.middleware');
@@ -10,6 +18,7 @@ const { processUserAuth, generateTokens } = require('../services/auth.service');
 const { ApiResponse } = require('../utils/apiResponse');
 const { updateWithHashedToken } = require('../models/user.model');
 const { sanitizeUser } = require('../utils/helper');
+const uploadAvatar = require('../middlewares/uploadAvatar');
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -59,13 +68,20 @@ router.route('/reset-password')
     authController.resetPassword // Ensure this matches exported method name
   );
 
+// Reset Password
+router.post('/change-password',
+  authenticate,
+  validate(changePasswordValidation),
+  authController.changePassword // Ensure this matches exported method name
+);
+
 //delete user
 router.route('/delete')
-.delete(
-  authenticate,
-  authorize(['user', 'admin']),
-  authController.deleteUser
-)
+  .delete(
+    authenticate,
+    authorize(['user', 'admin']),
+    authController.deleteUser
+  )
 
 // When initiating OAuth flow
 router.get('/google', (req, res) => {
@@ -83,12 +99,12 @@ router.get('/google/callback', async (req, res) => {
   const { sub, given_name, family_name, picture, email, email_verified } = googleUser;
 
   console.log('google user', googleUser);
-  
+
   // Handle successful authentication
   const userResponse = await processUserAuth(sub, email, given_name, family_name, picture, email_verified);
 
   console.log('userResponse', userResponse);
-  
+
 
   const { access_token, refresh_token, tokenSignature, refreshTokenHash } = await generateTokens(userResponse);
   if (!access_token || !refresh_token) {
@@ -96,7 +112,15 @@ router.get('/google/callback', async (req, res) => {
   }
   const sanitizedUser = sanitizeUser(userResponse);
   await updateWithHashedToken(sanitizedUser.id, refreshTokenHash, tokenSignature);
-  new ApiResponse(res, { data: {user: sanitizedUser, access_token, refresh_token} }).send('Login successful', sanitizedUser);
+  new ApiResponse(res, { data: { user: sanitizedUser, access_token, refresh_token } }).send('Login successful', sanitizedUser);
 });
+
+router.patch(
+  '/me/avatar',
+  authenticate,
+  uploadAvatar,
+  authController.updateMyAvatar
+);
+
 
 module.exports = router;

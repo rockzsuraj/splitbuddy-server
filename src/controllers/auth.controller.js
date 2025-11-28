@@ -9,8 +9,8 @@ const ApiError = require('../utils/apiError');
 const register = async (req, res, next) => {
   try {
     const { username, first_name, last_name, email, password } = req.body;
-    const user = await authService.register(username, first_name, last_name, email, password);
-    new ApiResponse(res).created('User registered successfully', user);
+    const result = await authService.register(username, first_name, last_name, email, password);
+    new ApiResponse(res, { data: result }).created('User registered successfully', result.user);
   } catch (err) {
     next(err);
   }
@@ -21,9 +21,12 @@ const login = async (req, res, next) => {
   try {
     const { email, password, username } = req.body;
 
-    if (!email || !password) {
-      throw new ApiError.BadRequest('Email and password are required');
+    if (!password || (!email && !username)) {
+      throw new ApiError.BadRequestError(
+        'Email or username and password are required'
+      );
     }
+
     const authResult = await authService.login(email, password, username);
     new ApiResponse(res, { data: authResult }).send('Login successful');
   } catch (err) {
@@ -36,8 +39,16 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res, next) => {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ')
+    ? authHeader.split(' ')[1]
+    : null;
+
+  if (!token) {
+    return res.status(400).json({ message: 'No token provided' });
+  }
   try {
-    await authService.logout(req.user.id)
+    await authService.logout(token, req.user.id)
     new ApiResponse(res).send('logout successful');
   } catch (error) {
     next(error);
@@ -47,6 +58,8 @@ const logout = async (req, res, next) => {
 
 const refreshToken = async (req, res, next) => {
   try {
+    console.log('req.params.refreshToken', req.params.refreshToken);
+
     const { access_token, refresh_token, user } = await authService.refreshToken(req.params.refreshToken);
     new ApiResponse(res, {
       data: {
@@ -170,7 +183,28 @@ async function handleGoogleCallback(code, state) {
 async function deleteUser(req, res, next) {
   const id = req.user.id;
   await deleteUserInDB(id)
-  new ApiResponse(res).send('User is successfully deleted!');
+  new ApiResponse(res).setMessage('User is successfully deleted!').send();
+}
+
+async function changePassword(req, res, next) {
+  try {
+    const user = req.user;
+    const { password, newPassword, confirmPassword } = req.body;
+    const { success, message } = await authService.changePassword(password, newPassword, confirmPassword, user);
+    console.log('success message service', success, message);
+    new ApiResponse(res).setMessage(message).send();
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateMyAvatar(req, res, next) {
+  try {
+    const result = await authService.updateMyAvatar(req, res);
+    return result;
+  } catch (error) {
+    next(error);
+  }
 }
 
 const exportsData = {
@@ -184,7 +218,9 @@ const exportsData = {
   logout,
   login,
   register,
-  deleteUser
+  deleteUser,
+  changePassword,
+  updateMyAvatar
 }
 
 module.exports = exportsData;

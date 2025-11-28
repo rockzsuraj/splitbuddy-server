@@ -1,43 +1,39 @@
 const express = require('express');
 const routes = require('./src/routes');
 const { errorHandler } = require('./src/utils/apiError');
-const cors = require('cors'); // 👈 add this
-
+const configureMiddleware = require('./src/config/middleware');
+const path = require('path');
 const app = express();
 
-// ✅ CORS middleware (MUST come before routes)
-app.use(cors({
-  origin: "*", // or specify your frontend URL instead of "*"
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('public'));
 
-  
-app.use((req, res, next) => {
-  // Skip body parsing for GET or HEAD requests
-  if (req.method === 'GET' || req.method === 'HEAD') return next();
-  express.json()(req, res, (err) => {
-    if (err) {
-      console.error('JSON parse error:', err.message);
-      return res.status(400).json({ error: 'Invalid JSON or content length mismatch' });
-    }
-    express.urlencoded({ extended: true })(req, res, next);
-  });
-});
 
-// ✅ FIX: Add middleware to handle empty bodies
-app.use((req, res, next) => {
-  // If it's a GET request, explicitly set body to undefined
-  if (req.method === 'GET' || req.method === 'DELETE') {
-    req.body = undefined;
+
+// Example: Cache middleware to check Redis cache
+async function cacheMiddleware(req, res, next) {
+  const key = req.originalUrl;
+  const cachedData = await redisClient.get(key);
+
+  if (cachedData) {
+    return res.json(JSON.parse(cachedData));
   }
   next();
+}
+
+configureMiddleware(app);
+
+app.get('/data', cacheMiddleware, async (req, res) => {
+  const data = { message: 'This is data to cache' };
+  await redisClient.setEx(req.originalUrl, 3600, JSON.stringify(data)); // Cache for 1 hour
+  res.json(data);
 });
 
 
 // Root route - NO DB calls here
 app.get('/', (req, res) => {
-  res.status(200).json({ 
+  res.status(200).json({
     message: 'API is running 🚀',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
@@ -54,9 +50,9 @@ app.get('/health', async (req, res) => {
   try {
     const { testConnection } = require('./src/config/database');
     const dbStatus = await testConnection();
-    
-    res.status(200).json({ 
-      status: 'OK', 
+
+    res.status(200).json({
+      status: 'OK',
       timestamp: new Date().toISOString(),
       database: dbStatus ? 'connected' : 'disconnected'
     });

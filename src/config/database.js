@@ -66,9 +66,32 @@ async function executeQuery(sql, params = []) {
   }
 }
 
+async function testConnection() {
+  const poolInstance = initPool();
+  // Try to run a lightweight query to verify the connection
+  try {
+    if (typeof poolInstance.query === 'function') {
+      await poolInstance.query('SELECT 1');
+    } else {
+      const client = await poolInstance.connect();
+      try {
+        await client.query('SELECT 1');
+      } finally {
+        try { client.release(); } catch (_) {}
+      }
+    }
+    debug('Database connection OK');
+    return true;
+  } catch (err) {
+    debug('Database connection failed:', err);
+    throw err;
+  }
+}
+
 module.exports = {
   initPool,
   executeQuery,
   convertPlaceholders,
+  testConnection,
+  pool
 };
-// ...existing code...

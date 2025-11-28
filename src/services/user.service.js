@@ -13,20 +13,20 @@ class UserService {
       .digest('hex');
 
     // 2. Indexed query (millisecond response even with 1M+ users)
-    const [user] = await executeQuery('SELECT * FROM users WHERE token_signature = ? AND refresh_token_expires_at > NOW()'
+    const {rows} = await executeQuery('SELECT * FROM users WHERE token_signature = $1 AND refresh_token_expires_at > NOW()'
       , [tokenSignature]
     )
 
-    if (!user) {
-      throw new Error('Refresh token is expired!')
+    if (!rows.length) {
+      throw new Error('Refresh token is expired or not valid!')
     };
 
-    console.log('check ==>', refreshToken, user.refresh_token);
-    const sanitizedUser = sanitizeUser(user);
-    
+    const sanitizedUser = sanitizeUser(rows?.[0]);
 
     // 3. Verify against bcrypt hash
-    const isValid = await bcrypt.compare(refreshToken, user.refresh_token);
+    const isValid = await bcrypt.compare(refreshToken, rows?.[0]?.refresh_token);
+    console.log('isValid', isValid);
+    
     if (isValid) {
       return sanitizedUser
     }
@@ -105,17 +105,8 @@ class UserService {
       .join(', ');
 
     updateParams.push(id);
-
-    console.log('setClause', setClause);
-    console.log('id', id);
-
-
-
     // 6. Execute update
-    await User.dynamicQueryUpdate(updateParams, setClause)
-
-    // 7. Return updated user
-    const user = await User.findById(id);
+    const user = await User.dynamicQueryUpdate(updateParams, setClause);
     return user;
   }
 

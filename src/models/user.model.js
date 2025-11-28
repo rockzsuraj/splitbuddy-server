@@ -1,8 +1,9 @@
 // ...existing code...
-const { executeQuery, pool } = require('../config/database');
+const { executeQuery, pool, initPool } = require('../config/database');
 const crypto = require('crypto');
 const { ApiError } = require('../utils/apiError');
 const bcrypt = require('bcryptjs');
+const { sanitizeUser } = require('../utils/helper');
 
 class User {
   static async hashPassword(password) {
@@ -12,20 +13,19 @@ class User {
 
   static async create({ username, first_name, last_name, email, password, image_url = '' }) {
     // Postgres: use $1, $2, ... placeholders + RETURNING id
-    const result = await executeQuery(
+    const {rows} = await executeQuery(
       `INSERT INTO users (username, first_name, last_name, email, password, image_url)
        VALUES ($1, $2, $3, $4, $5, $6)
-       RETURNING id`,
+       RETURNING *`,
       [username, first_name, last_name, email, password, image_url]
     );
-    console.log('result', result);
-    
 
-    return result;
+    const user = sanitizeUser(rows[0]);
+    return user;
   }
 
   static async findUserByRefreshToken(refreshToken) {
-    const {rows} = await executeQuery(
+    const { rows } = await executeQuery(
       `SELECT * FROM users 
        WHERE refresh_token = $1 
        AND refresh_token_expires_at > NOW()`,
@@ -35,15 +35,18 @@ class User {
   }
 
   static async findByEmail(email) {
-    const {rows} = await executeQuery(
+    console.log('email ==>', email)
+    const { rows } = await executeQuery(
       `SELECT * FROM users WHERE email = $1 LIMIT 1`,
       [email]
     );
+    console.log('rows', rows);
+
     return rows?.[0];
   }
 
   static async findByUsername(username) {
-    const {rows} = await executeQuery(
+    const { rows } = await executeQuery(
       `SELECT * FROM users WHERE username = $1 LIMIT 1`,
       [username]
     );
@@ -51,7 +54,7 @@ class User {
   }
 
   static async findById(id) {
-    const {rows} = await executeQuery(
+    const { rows } = await executeQuery(
       `SELECT * FROM users WHERE id = $1 LIMIT 1`,
       [id]
     );
@@ -59,7 +62,7 @@ class User {
   }
 
   static async findAll() {
-    const {rows} = await executeQuery(`SELECT * FROM users`);
+    const { rows } = await executeQuery(`SELECT * FROM users`);
     return rows;
   }
 
@@ -95,7 +98,7 @@ class User {
   }
 
   static async passwordReset(id, token, newPassword) {
-    const {rows} = await executeQuery(
+    const { rows } = await executeQuery(
       `SELECT pr.*, u.email 
        FROM password_resets pr
        JOIN users u ON pr.user_id = u.id
@@ -124,14 +127,14 @@ class User {
       throw new ApiError(400, 'Invalid reset token');
     }
 
-    const client = await pool.connect();
+    const client = await initPool().connect();
     try {
       await client.query('BEGIN');
 
       const newHashedPassword = await User.hashPassword(newPassword);
 
       await executeQuery(
-        'UPDATE users SET password = $1 WHERE id = $2',
+        'UPDATE users SET password = $1, password_changed_at = NOW() WHERE id = $2',
         [newHashedPassword, id]
       );
 
@@ -151,6 +154,29 @@ class User {
     return { success: true, message: 'Password updated successfully' };
   }
 
+  static async passwordChange(id, newPassword) {
+    const client = await initPool().connect();
+    try {
+      await client.query('BEGIN');
+
+      const newHashedPassword = await User.hashPassword(newPassword);
+
+      await executeQuery(
+        'UPDATE users SET password = $1, password_changed_at = NOW() WHERE id = $2',
+        [newHashedPassword, id]
+      );
+
+      await client.query('COMMIT');
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+
+    return { success: true, message: 'Password changed. Please login again.' };
+  }
+
   static async logOutUser(id) {
     await executeQuery(
       `UPDATE users 
@@ -162,19 +188,20 @@ class User {
     );
   }
 
-  static async storeRefreshToken(userId, refreshTokenHash) {
-    const result = await executeQuery(
-      `UPDATE users 
-       SET refresh_token = $1, 
-           refresh_token_expires_at = NOW() + INTERVAL '7 days'
-       WHERE id = $2`,
-      [refreshTokenHash, userId]
-    );
-    return result;
-  }
+static async storeRefreshToken(userId, refreshTokenHash, tokenSignature) {
+  const result = await executeQuery(
+    `UPDATE users 
+     SET refresh_token = $1, 
+         token_signature = $2,
+         refresh_token_expires_at = NOW() + INTERVAL '7 days'
+     WHERE id = $3`,
+    [refreshTokenHash, tokenSignature, userId]
+  );
+  return result;
+}
 
   static async findUserByGoogleId(googleID) {
-    const {rows} = await executeQuery(
+    const { rows } = await executeQuery(
       `SELECT * FROM users WHERE google_id = $1 LIMIT 1`,
       [googleID]
     );
@@ -199,11 +226,12 @@ class User {
   }
 
   static async dynamicQueryUpdate(updateParams, setClause) {
-    const result = await executeQuery(
-      `UPDATE users SET ${setClause} WHERE id = $${updateParams.length}`,
+    const {rows} = await executeQuery(
+      `UPDATE users SET ${setClause} WHERE id = $${updateParams.length} returning *`,
       updateParams
     );
-    return result;
+    const user = sanitizeUser(rows[0]);
+    return user;
   }
 }
 

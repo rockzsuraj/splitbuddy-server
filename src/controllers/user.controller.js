@@ -31,12 +31,8 @@ exports.updateProfile = async (req, res, next) => {
         const id = req.user.id;
        
         const user = await userService.updateProfile(id, req.body);
-        const sanitizedUser = sanitizeUser(user);
-        console.log('user', user);
-        
-
         new ApiResponse(res, {
-            data: sanitizedUser
+            data: user
         }).send('user profile updated successfully!')
 
     } catch (error) {

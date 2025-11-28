@@ -1,49 +1,60 @@
 const jwt = require('jsonwebtoken');
-const { ApiError } = require('../utils/apiError');
+const { ApiError, UnauthorizedError, errorHandler, InternalServerError,  } = require('../utils/apiError');
 const { JWT_SECRET } = require('../config/env');
 const logger = require('../utils/logger');
 const User = require('../models/user.model');
-const { sanitizeUser } = require('../utils/helper');
 const { refreshToken } = require('../controllers/auth.controller');
+const redisClient = require('../config/redisClient');
 
 /**
  * Authentication middleware
  */
 const authenticate = async (req, res, next) => {
   try {
-    // 1. Get token from header/cookies
     const token = req?.cookies?.accessToken || req.headers.authorization?.split(' ')[1];
-    
-    if (!token) {
-      throw new ApiError(401, 'Authentication required');
+    const isBlacklisted = await redisClient.get(`blacklist:${token}`);
+
+    if (isBlacklisted) {
+       return next(new UnauthorizedError('Token has been revoked'));
     }
 
-    // 2. Verify token
-    const decoded = jwt.verify(token, JWT_SECRET);
-    
-    // 3. Attach user to request
+    if (!token) {
+      return next(new UnauthorizedError('Authentication required'));
+    }
+
+    let decoded;
+    try {
+      decoded = jwt.verify(token, JWT_SECRET);
+    } catch (err) {
+      if (err.name === 'TokenExpiredError') {
+        return next(new UnauthorizedError('Token expired', 'TOKEN_EXPIRED'));
+      } 
+      if (err.name === 'JsonWebTokenError') {
+        return next(new UnauthorizedError('Invalid token', 'INVALID_TOKEN'));
+      }
+      return next(new InternalServerError('Failed to authenticate token'));
+    }
 
     const existUser = await User.findById(decoded.userId);
-
     if (!existUser) {
-      throw next(new ApiError(401, 'User no longer exist'))
+      return next(new UnauthorizedError('User no longer exists'));
     }
-    const sanitizedUser = sanitizeUser(existUser);
 
-    req.user = sanitizedUser;
+    if (existUser.password_changed_at) {
+      const passwordChangedAtTimestamp = parseInt(existUser.password_changed_at.getTime() / 1000, 10);
+      if (decoded.iat < passwordChangedAtTimestamp) {
+        return next(new UnauthorizedError('Token no longer valid after password change. Please login again.'));
+      }
+    }
 
+    req.user = existUser;
     logger.info(`Authenticated user ${decoded.userId}`);
     next();
   } catch (err) {
-    if (err.name === 'TokenExpiredError') {
-      return next(new ApiError(401, 'Token expired', 'TOKEN_EXPIRED'));
-    }
-    if (err.name === 'JsonWebTokenError') {
-      return next(new ApiError(401, 'Invalid token', 'INVALID_TOKEN'));
-    }
     next(err);
   }
 };
+
 
 /**
  * Role-based authorization middleware
@@ -57,8 +68,6 @@ const authorize = (roles = []) => {
 
   return (req, res, next) => {
 
-      console.log('decoded', req);
-  
     // Check if user exists and has a role
     if (!req.user?.role) {
       return next(new ApiError(401, 'Unauthorized - No user role found'));

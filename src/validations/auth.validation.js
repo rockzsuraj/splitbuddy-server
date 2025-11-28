@@ -90,8 +90,8 @@ const authValidation = {
       .isLength({ min: 2, max: 50 }).withMessage('Last name must be between 2-50 characters'),
     body('username')
       .trim()
-      .notEmpty().withMessage('Name is required')
-      .isLength({ min: 2, max: 50 }).withMessage('Name must be between 2-50 characters'),
+      .notEmpty().withMessage('username is required')
+      .isLength({ min: 2, max: 50 }).withMessage('username must be between 2-50 characters'),
     body('image_url')
       .optional
       .apply((value, { req }) => {
@@ -179,6 +179,23 @@ const resetPasswordValidation = [
   validateRequest
 ];
 
+const changePasswordValidation = [
+  body('password').notEmpty().withMessage('password is required'),
+  body('newPassword')
+    .notEmpty().withMessage('new password is required')
+    .isLength({ min: 8 }).withMessage('new password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('new password must contain at least one uppercase letter')
+    .matches(/[a-z]/).withMessage('new password must contain at least one lowercase letter')
+    .matches(/[0-9]/).withMessage('new password must contain at least one number')
+    .matches(/[^A-Za-z0-9]/).withMessage('new password must contain at least one special character'),
+
+  body('confirmPassword')
+    .notEmpty().withMessage('Please confirm your password')
+    .custom((value, { req }) => value === req.body.newPassword)
+    .withMessage('Passwords do not match'),
+  validateRequest
+];
+
 // Custom validation middleware
 const validate = (schema) => {
   if (!schema) {
@@ -203,7 +220,10 @@ const updateProfileValidation = [
     .withMessage('Name must be between 2-50 characters')
     .matches(/^[a-zA-Z\s'-]+$/)
     .withMessage('Name contains invalid characters'),
-
+  body('username')
+    .trim()
+    .notEmpty().withMessage('username is required')
+    .isLength({ min: 2, max: 50 }).withMessage('username must be between 2-50 characters'),
   body('email')
     .optional()
     .trim()
@@ -223,6 +243,7 @@ const updateProfileValidation = [
     const allowedFields = [
       'first_name',
       'last_name',
+      'username',
       'email',
       'image_url'
     ];
@@ -242,18 +263,41 @@ const updateProfileValidation = [
 
 const createGroup = [
   body('group_name')
-  .notEmpty()
-  .trim()
-  .isLength({max: 20, min: 2})
-  .withMessage('Group must be between 2-20 characters')
-   ,
-   body('description')
-   .notEmpty()
-   .trim()
-   .isLength({max:50, min: 5})
-   .withMessage("Group description must be between 5-50 characters"),
+    .notEmpty()
+    .trim()
+    .isLength({ max: 20, min: 2 })
+    .withMessage('Group must be between 2-20 characters')
+  ,
+  body('description')
+    .notEmpty()
+    .trim()
+    .isLength({ max: 50, min: 5 })
+    .withMessage("Group description must be between 5-50 characters"),
   validateRequest
 ]
+
+const updateAvatar = [
+  // Custom validator using req.file from multer
+  body().custom((_, { req }) => {
+    if (!req.file) {
+      throw new Error('Avatar file is required');
+    }
+
+    const allowed = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    if (!allowed.includes(req.file.mimetype)) {
+      throw new Error('Invalid image format (jpeg/jpg/png/webp only)');
+    }
+
+    // 2 MB limit (multer already limits, but double-check)
+    const maxSize = 2 * 1024 * 1024;
+    if (req.file.size > maxSize) {
+      throw new Error('Image size must be less than 2 MB');
+    }
+
+    return true;
+  }),
+  validateRequest,
+];
 
 module.exports = {
   validate,
@@ -268,6 +312,8 @@ module.exports = {
   refreshTokenValidation,
   forgotPasswordValidation,
   resetPasswordValidation,
+  changePasswordValidation,
   updateProfileValidation,
-  createGroup
+  createGroup,
+  updateAvatar
 };
