@@ -3,6 +3,7 @@ const routes = require('./src/routes');
 const { errorHandler } = require('./src/utils/apiError');
 const configureMiddleware = require('./src/config/middleware');
 const path = require('path');
+const { redisClient } = require('./src/config/redisClient');
 const app = express();
 
 app.set('view engine', 'pug');
@@ -10,17 +11,25 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
 
-
-// Example: Cache middleware to check Redis cache
 async function cacheMiddleware(req, res, next) {
-  const key = req.originalUrl;
-  const cachedData = await redisClient.get(key);
+  // If Redis isn’t ready, just skip cache
+  if (!redisClient.isReady) return next(); // 👈 skip if Redis down
 
-  if (cachedData) {
-    return res.json(JSON.parse(cachedData));
+  try {
+    const key = req.originalUrl;
+    const cachedData = await redisClient.get(key);
+
+    if (cachedData) {
+      return res.json(JSON.parse(cachedData));
+    }
+  } catch (err) {
+    console.error('Redis cache error:', err.message);
+    // Don’t block the request if cache fails
   }
+
   next();
 }
+
 
 configureMiddleware(app);
 
@@ -52,6 +61,7 @@ app.get('/health', async (req, res) => {
     const dbStatus = await testConnection();
 
     res.status(200).json({
+      redis: redisClient.isReady ? 'OK' : 'Disconnected',
       status: 'OK',
       timestamp: new Date().toISOString(),
       database: dbStatus ? 'connected' : 'disconnected'
@@ -65,7 +75,6 @@ app.get('/health', async (req, res) => {
     });
   }
 });
-
 // API routes
 app.use('/api', routes);
 

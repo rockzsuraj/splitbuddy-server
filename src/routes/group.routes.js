@@ -2,6 +2,7 @@ const express = require('express');
 const { authorize, authenticate } = require('../middlewares/auth.middleware');
 const groupController = require('../controllers/group.controller');
 const { createGroup, updateGroup, addMember, deleteGroup, fetchGroupsForUserMember, findGroupById, removeMember } = require('../validations/group.validation');
+const ExpenseController = require('../controllers/expense.controller');
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.route('/:groupID')
         findGroupById,
         authenticate,
         authorize(['user', 'admin']),
-        groupController.findGroupById
+        groupController.getGroupDetails
     )
     .patch(
         updateGroup,
@@ -57,5 +58,15 @@ router.delete('/:groupID/members/:userID',
     groupController.removeMember
 );
 
+// POST /api/groups/:groupId/expenses
+router.post('/:groupId/expenses', authenticate, ExpenseController.addExpense);
+router.patch('/:groupId/expenses/:expenseId', authenticate, ExpenseController.updateExpense);
+router.delete('/:groupId/expenses/:expenseId', authenticate, ExpenseController.deleteExpense);
+
+// GET /api/groups/:groupId/balances
+router.get('/:groupId/balances', authenticate, ExpenseController.getBalances);
+
+// POST /api/groups/:groupId/settlements
+router.post('/:groupId/settlements', authenticate, ExpenseController.createSettlement);
 
 module.exports = router;

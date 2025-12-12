@@ -1,12 +1,19 @@
 const knex = require('knex/lib');
 const app = require('./app');
-const { testConnection } = require('./src/config/database');
+const { testConnection, initPool } = require('./src/config/database');
 const { PORT } = require('./src/config/env');
 const logger = require('./src/utils/logger');
+const redisClient = require('./src/config/redisClient');
 
 async function startServer() {
   try {
-    await testConnection();
+    await redisClient.connectRedis();   // will log error but NOT crash on timeout
+    // Test database connection
+    const connected = await testConnection();
+    if (!connected) {
+        logger.error('Failed to connect to database');
+        process.exit(1);
+    }
     app.listen(PORT, () => {
       logger.info(`Server running on port ${PORT}`);
     });

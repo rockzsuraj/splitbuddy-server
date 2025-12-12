@@ -1,28 +1,39 @@
+const ExpenseModel = require('../models/expense.model');
 const Group = require('../models/group.model');
 const User = require('../models/user.model');
 const apiError = require('../utils/apiError');
 
-const createGroup = async (group_name, description, created_by) => {
-    const row = await Group.createGroup(group_name, description, created_by);
-    return row;
-}
+// Default icon to use when the client does not choose one
+const DEFAULT_GROUP_ICON = 'others';
+
+const createGroup = async (group_name, description, created_by, group_icon) => {
+    // Fallback to a default icon if none is provided / is empty
+    const finalIcon =
+        typeof group_icon === 'string' && group_icon.trim().length > 0
+            ? group_icon.trim()
+            : DEFAULT_GROUP_ICON;
+
+    const newGroup = await Group.createGroup(group_name, description, created_by, group_icon);
+    await Group.addMember(newGroup.group_id, created_by);
+    return newGroup
+};
 
 const deleteGroup = async (groupId) => {
     const row = await Group.deleteGroup(groupId);
     return row;
 }
 
-const updateGroup = async (group_name, description, groupID) => {
-    const row = await Group.updateGroup(group_name, description, groupID);
+const updateGroup = async (groupID, { group_name, description, split_mode }) => {
+    const row = await Group.updateGroup(groupID, { group_name, description, split_mode });
     return row;
 }
 
-const addMember = async (groupId, userId) => {
-    const userExist = await User.findById(userId)
+const addMember = async (groupId, email) => {
+    const userExist = await User.findByEmail(email)
     if (!userExist) {
         throw new apiError.NotFoundError('User not found');
     }
-    const row = await Group.addMember(groupId, userId);
+    const row = await Group.addMember(groupId, userExist.id);
     return row
 }
 
@@ -53,6 +64,11 @@ const fetchGroupsForUserMember = async (userID) => {
     return row;
 }
 
+const getGroupDetails = async (groupId) => {
+    const row = await ExpenseModel.getGroupDetails(groupId);
+    return row;
+}
+
 
 module.exports = {
     createGroup,
@@ -62,5 +78,6 @@ module.exports = {
     findGroupById,
     removeMember,
     findMember,
-    fetchGroupsForUserMember
+    fetchGroupsForUserMember,
+    getGroupDetails
 }

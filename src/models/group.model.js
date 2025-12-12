@@ -1,106 +1,134 @@
-const { pool, executeQuery } = require("../config/database");
+const { executeQuery, initPool } = require("../config/database");
 
 class Group {
     // create
-    static async createGroup(group_name, description, created_by) {
-        const result = await executeQuery(
+    static async createGroup(group_name, description, created_by, group_icon) {
+        const { rows } = await executeQuery(
             `
-            Insert INTO user_groups (group_name, description, created_by, created_at) VALUES( ?, ?, ?, NOW())
+            INSERT INTO user_groups (group_name, description, created_by, group_icon, created_at)
+            VALUES ($1, $2, $3, $4, NOW())
+            RETURNING *
             `,
-            [group_name, description, created_by]
-        )
+            [group_name, description, created_by, group_icon]
+        );
 
-        console.log('result =>', result);
-        
-
-        const row = await Group.findById(result.insertId);
-        return row;
+        return rows[0];
     }
 
-    // fetch groups
-
+    // fetch groups for a user as member
     static async fetchGroupsForUserMember(user_id) {
-        const [row] = await executeQuery(
+        const { rows } = await executeQuery(
             `
-            SELECT ug.group_id, ug.group_name, ug.description, ug.created_at, ugm.user_id, ugm.joined_at
-            FROM user_groups AS ug INNER JOIN user_group_members
-            AS ugm
-            ON ug.group_id = ugm.group_id
-            WHERE ugm.user_id = ?
+            SELECT
+            ug.*
+            FROM user_groups AS ug
+            INNER JOIN user_group_members AS ugm
+                ON ug.group_id = ugm.group_id
+            WHERE ugm.user_id = $1
             `,
             [user_id]
-        )
-        return row;
+        );
+
+        console.log('rows', rows);
+
+        return rows;
     }
 
     // findByID
     static async findById(id) {
-        const [row] = await executeQuery(
-            `SELECT * FROM user_groups WHERE group_id = ?`,
+        const { rows } = await executeQuery(
+            `SELECT * FROM user_groups WHERE group_id = $1`,
             [id]
-        )
-        return row;
+        );
+        return rows?.[0];
     }
+
     // addMember
+    static async addMember(groupId, user_id) {
+        const { rows } = await executeQuery(
+            `
+            INSERT INTO user_group_members (group_id, user_id, joined_at)
+            VALUES ($1, $2, NOW())
+            RETURNING *
+            `,
+            [groupId, user_id]
+        );
 
-    static async addMember(groupId, userId) {
-        const [result] = await pool.query(
-            `INSERT INTO user_group_members SET ? `,
-            { group_id: groupId, user_id: userId }
-        )
-
-        return result;
+        return rows[0];
     }
 
     static async findMember(groupID, userID) {
-        const [result] = await executeQuery(
+        const { rows } = await executeQuery(
             `
-            SELECT * FROM user_group_members as ugm
-            Inner JOIN user_groups AS ug
-            ON ugm.group_id = ug.group_id
-            WHERE ugm.user_id = ? AND ug.group_id = ?
+            SELECT *
+            FROM user_group_members AS ugm
+            INNER JOIN user_groups AS ug
+                ON ugm.group_id = ug.group_id
+            WHERE ugm.user_id = $1 AND ug.group_id = $2
             `,
             [userID, groupID]
-        )
-        console.log('result ==>', result);
-        
-        return result;
+        );
+
+        return rows?.[0];
     }
 
     static async removeMember(groupID, userID) {
-        const result = await executeQuery(`
-            DELETE FROM user_group_members WHERE group_id = ? AND user_id = ?
+        const result = await executeQuery(
+            `
+            DELETE FROM user_group_members
+            WHERE group_id = $1 AND user_id = $2
             `,
             [groupID, userID]
-        )
-        return result
+        );
+        return result;
     }
 
     // delete group
-
     static async deleteGroup(groupID) {
         const result = await executeQuery(
             `
-            DELETE FROM user_groups WHERE group_id = ?
+            DELETE FROM user_groups WHERE group_id = $1
             `,
             [groupID]
-        )
+        );
 
         return result;
     }
 
-    // delete
+    // update group
+    static async updateGroup(group_id, updates = {}) {
+        const ALLOWED = new Set(['group_name', 'description', 'split_mode', 'group_icon']);
 
-    static async updateGroup(group_name, description, group_id) {
-        const result = await executeQuery(
-            `
-            UPDATE user_groups SET group_name = ?, description = ? WHERE group_id = ?
-            `,
-            [group_name, description, group_id]
-        )
+        // group_id must be valid
+        if (group_id == null || Number.isNaN(Number(group_id))) {
+            throw new Error('group_id is required and must be a number');
+        }
 
-        return result;
+        // filter allowed + non-undefined values
+        const entries = Object.entries(updates).filter(
+            ([key, value]) => ALLOWED.has(key) && value !== undefined
+            // If you also want to ignore nulls: && value !== null
+        );
+
+        if (entries.length === 0) {
+            throw new Error('No valid fields provided to update');
+        }
+
+        const setClauses = entries.map(([key], idx) => `"${key}" = $${idx + 1}`);
+        const values = entries.map(([, value]) => value);
+
+        const groupIdParamIndex = values.length + 1;
+
+        const sql = `
+    UPDATE user_groups
+    SET ${setClauses.join(', ')}
+    WHERE group_id = $${groupIdParamIndex}
+    RETURNING *
+  `;
+        const { rows } = await executeQuery(sql, [...values, Number(group_id)]);
+        return rows[0];
     }
+
 }
 
 module.exports = Group;

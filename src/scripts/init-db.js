@@ -1,127 +1,103 @@
-const mysql = require('mysql2/promise');
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = require('../config/env');
+require('dotenv').config();
+const { Pool } = require('pg');
+
+const CREATE_USERS_TABLE = `
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  image_url VARCHAR(255),
+  role VARCHAR(20) DEFAULT 'user',
+  verified BOOLEAN DEFAULT FALSE,
+  status VARCHAR(20) DEFAULT 'active',
+  last_login TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  refresh_token VARCHAR(255),
+  refresh_token_expires_at TIMESTAMPTZ,
+  token_signature VARCHAR(255),
+  google_id VARCHAR(255) UNIQUE
+);
+`;
+
+const CREATE_USER_GROUPS_TABLE = `
+CREATE TABLE IF NOT EXISTS user_groups (
+  group_id SERIAL PRIMARY KEY,
+  group_name VARCHAR(100) NOT NULL,
+  description TEXT,
+  created_by INT NOT NULL REFERENCES users(id),
+  group_icon VARCHAR(100) DEFAULT 'others',
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+`;
+
+const CREATE_USER_GROUP_MEMBERS_TABLE = `
+CREATE TABLE IF NOT EXISTS user_group_members (
+  group_id INT NOT NULL REFERENCES user_groups(group_id) ON DELETE CASCADE,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  joined_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (group_id, user_id)
+);
+`;
+
+const CREATE_USER_EXPENSES_TABLE = `
+CREATE TABLE IF NOT EXISTS user_expenses (
+  expense_id SERIAL PRIMARY KEY,
+  group_id INT NOT NULL REFERENCES user_groups(group_id) ON DELETE CASCADE,
+  paid_by INT NOT NULL REFERENCES users(id),
+  amount NUMERIC(10,2) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  expense_date DATE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+`;
+
+const CREATE_EXPENSE_SHARES_TABLE = `
+CREATE TABLE IF NOT EXISTS expense_shares (
+  share_id SERIAL PRIMARY KEY,
+  expense_id INT NOT NULL REFERENCES user_expenses(expense_id) ON DELETE CASCADE,
+  user_id INT NOT NULL REFERENCES users(id),
+  share_amount NUMERIC(10,2) NOT NULL,
+  is_settled BOOLEAN DEFAULT FALSE
+);
+`;
+
+const CREATE_SETTLEMENTS_TABLE = `
+CREATE TABLE IF NOT EXISTS settlements (
+  settlement_id SERIAL PRIMARY KEY,
+  group_id INT NOT NULL REFERENCES user_groups(group_id),
+  from_user INT NOT NULL REFERENCES users(id),
+  to_user INT NOT NULL REFERENCES users(id),
+  amount NUMERIC(10,2) NOT NULL,
+  settled_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  is_paid BOOLEAN DEFAULT FALSE
+);
+`;
 
 async function initializeDatabase() {
-    // Create database if it doesn't exist
-    const connection = await mysql.createConnection({
-        host: DB_HOST,
-        user: DB_USER,
-        password: DB_PASSWORD
-    });
+    const connectionString = process.env.DATABASE_URL;
 
-    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;`);
-    await connection.end();
+    if (!connectionString) {
+        throw new Error('DATABASE_URL is not set. Please provide a Postgres connection string.');
+    }
 
-    console.log('Database created or already exists');
+    const pool = new Pool({ connectionString });
 
-    // Create tables
-    const pool = mysql.createPool({
-        host: DB_HOST,
-        user: DB_USER,
-        password: DB_PASSWORD,
-        database: DB_NAME,
-        multipleStatements: true
-    });
+    try {
+        // await pool.query(CREATE_USERS_TABLE);
+        await pool.query(CREATE_USER_GROUPS_TABLE);
+        await pool.query(CREATE_USER_GROUP_MEMBERS_TABLE);
+        await pool.query(CREATE_USER_EXPENSES_TABLE);
+        await pool.query(CREATE_EXPENSE_SHARES_TABLE);
+        await pool.query(CREATE_SETTLEMENTS_TABLE);
 
-     await pool.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) NOT NULL UNIQUE,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        first_name VARCHAR(50) NOT NULL,
-        last_name VARCHAR(50) NOT NULL,
-        image_url VARCHAR(255),
-        role ENUM('user', 'admin', 'moderator') DEFAULT 'user',
-        verified TINYINT(1) DEFAULT 0,
-        status ENUM('active', 'suspended', 'pending') DEFAULT 'active',
-        last_login TIMESTAMP NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        refresh_token VARCHAR(255),
-        refresh_token_expires_at TIMESTAMP NULL,
-        token_signature VARCHAR(255),
-        google_id VARCHAR(255) UNIQUE
-      ) ENGINE=InnoDB;
-    `);
-
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS user_groups (
-        group_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        group_name VARCHAR(100) NOT NULL,
-        description TEXT,
-        created_by INT UNSIGNED NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (created_by) REFERENCES users(id)
-      ) ENGINE=InnoDB;
-    `);
-
-        await pool.query(`
-      CREATE TABLE IF NOT EXISTS user_groups (
-        group_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        group_name VARCHAR(100) NOT NULL,
-        description TEXT,
-        created_by INT UNSIGNED NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (created_by) REFERENCES users(id)
-      ) ENGINE=InnoDB;
-    `);
-
-        await pool.query(`
-      CREATE TABLE user_group_members (
-        group_id INT UNSIGNED NOT NULL,
-        user_id INT UNSIGNED NOT NULL,
-        joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (group_id, user_id),
-        FOREIGN KEY (group_id) REFERENCES user_groups(group_id) ON DELETE CASCADE,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-      ) ENGINE=InnoDB;
-    `);
-
-        await pool.query(`
-      CREATE TABLE user_expenses (
-        expense_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        group_id INT UNSIGNED NOT NULL,
-        paid_by INT UNSIGNED NOT NULL,
-        amount DECIMAL(10,2) NOT NULL,
-        description VARCHAR(255) NOT NULL,
-        expense_date DATE NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (group_id) REFERENCES user_groups(group_id) ON DELETE CASCADE,
-        FOREIGN KEY (paid_by) REFERENCES users(id)
-      ) ENGINE=InnoDB;
-    `);
-
-        await pool.query(`
-      CREATE TABLE expense_shares (
-        share_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        expense_id INT UNSIGNED NOT NULL,
-        user_id INT UNSIGNED NOT NULL,
-        share_amount DECIMAL(10,2) NOT NULL,
-        is_settled BOOLEAN DEFAULT FALSE,
-        FOREIGN KEY (expense_id) REFERENCES user_expenses(expense_id) ON DELETE CASCADE,
-        FOREIGN KEY (user_id) REFERENCES users(id)
-      ) ENGINE=InnoDB;
-    `);
-
-            await pool.query(`
-      CREATE TABLE settlements (
-        settlement_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        group_id INT UNSIGNED NOT NULL,
-        from_user INT UNSIGNED NOT NULL,
-        to_user INT UNSIGNED NOT NULL,
-        amount DECIMAL(10,2) NOT NULL,
-        settled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        is_paid BOOLEAN DEFAULT FALSE,
-        FOREIGN KEY (group_id) REFERENCES user_groups(group_id),
-        FOREIGN KEY (from_user) REFERENCES users(id),
-        FOREIGN KEY (to_user) REFERENCES users(id)
-      ) ENGINE=InnoDB;
-    `);
-
-
-    console.log('Tables created or already exist');
-    await pool.end();
+        console.log('Tables created or already exist');
+    } finally {
+        await pool.end();
+    }
 }
 
 initializeDatabase().catch(err => {

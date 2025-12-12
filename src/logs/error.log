@@ -395,3 +395,171 @@ Require stack:
     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
 2025-11-28 14:17:58 [[31merror[39m]: Error: read ETIMEDOUT
     at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 03:41:05 [[31merror[39m]: Error: Route.get() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as get] (/Users/suraj.kumar/Desktop/splibuddyserver/node_modules/express/lib/router/route.js:216:15)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/group.routes.js:18:6)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/index.js:7:21)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-12-05 03:42:02 [[31merror[39m]: Error: Route.get() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as get] (/Users/suraj.kumar/Desktop/splibuddyserver/node_modules/express/lib/router/route.js:216:15)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/group.routes.js:18:6)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/index.js:7:21)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-12-05 04:03:49 [[31merror[39m]: Error: Cannot find module '../utilsnew /apiResponse'
+Require stack:
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/group.controller.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/routes/group.routes.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/routes/index.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/app.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/local-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/group.controller.js:1:21)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+2025-12-05 04:04:00 [[31merror[39m]: Error: Cannot find module '../utilsnew /apiResponse'
+Require stack:
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/group.controller.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/routes/group.routes.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/src/routes/index.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/app.js
+- /Users/suraj.kumar/Desktop/splibuddyserver/local-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/group.controller.js:1:21)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+2025-12-05 04:09:51 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 12:06:41 [[31merror[39m]: ReferenceError: authenticateToken is not defined
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/group.routes.js:62:5)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/routes/index.js:7:21)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-12-05 12:09:37 [[31merror[39m]: Error: Connection terminated due to connection timeout
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-05 12:12:24 [[31merror[39m]: Error: Connection terminated due to connection timeout
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-05 12:28:57 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 12:44:31 [[31merror[39m]: /Users/suraj.kumar/Desktop/splibuddyserver/src/services/expense.service.js:6
+    this.client;
+        ^
+
+SyntaxError: Unexpected token '.'
+    at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+    at Module._compile (node:internal/modules/cjs/loader:1428:41)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/expense.controller.js:1:24)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-12-05 12:44:41 [[31merror[39m]: /Users/suraj.kumar/Desktop/splibuddyserver/src/services/expense.service.js:96
+    const this.client = await pool.connect();
+          ^^^^
+
+SyntaxError: Unexpected token 'this'
+    at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+    at Module._compile (node:internal/modules/cjs/loader:1428:41)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/expense.controller.js:1:24)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-12-05 12:44:43 [[31merror[39m]: /Users/suraj.kumar/Desktop/splibuddyserver/src/services/expense.service.js:96
+        const this.client = await pool.connect();
+              ^^^^
+
+SyntaxError: Unexpected token 'this'
+    at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+    at Module._compile (node:internal/modules/cjs/loader:1428:41)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/suraj.kumar/Desktop/splibuddyserver/src/controllers/expense.controller.js:1:24)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-12-05 12:55:38 [[31merror[39m]: Error: Connection terminated due to connection timeout
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-05 13:06:22 [[31merror[39m]: Error: getaddrinfo ENOTFOUND ep-wispy-cell-aedtwo25-pooler.c-2.us-east-2.aws.neon.tech
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-05 13:49:49 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 21:53:03 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 22:21:43 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 23:01:50 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 23:19:46 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-05 23:26:08 [[31merror[39m]: Error: Connection terminated due to connection timeout
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-05 23:26:23 [[31merror[39m]: Error: Connection terminated due to connection timeout
+    at /Users/suraj.kumar/Desktop/splibuddyserver/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testConnection (/Users/suraj.kumar/Desktop/splibuddyserver/src/config/database.js:73:7)
+    at async startServer (/Users/suraj.kumar/Desktop/splibuddyserver/local-server.js:9:5)
+2025-12-08 11:33:39 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-08 12:30:22 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-08 13:48:27 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-08 15:20:05 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-08 15:47:10 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)
+2025-12-08 19:33:03 [[31merror[39m]: Error: read ETIMEDOUT
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:218:20)

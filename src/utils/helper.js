@@ -23,8 +23,57 @@ function getTokenTtlSeconds(token) {
   return diffSec > 0 ? diffSec : 0;
 }
 
+// 🔹 From balances -> who should pay whom
+function calculateRecommendedSettlements(balances = []) {
+  const creditors = []; // +ve balance => should receive
+  const debtors = [];   // -ve balance => should pay
+
+  for (const b of balances) {
+    const balNum = Number(b.balance);
+
+    if (balNum > 0) {
+      creditors.push({ ...b, remaining: balNum });
+    } else if (balNum < 0) {
+      debtors.push({ ...b, remaining: -balNum }); // store positive amount
+    }
+  }
+
+  creditors.sort((a, b) => b.remaining - a.remaining);
+  debtors.sort((a, b) => b.remaining - a.remaining);
+
+  const settlements = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < debtors.length && j < creditors.length) {
+    const debtor = debtors[i];
+    const creditor = creditors[j];
+
+    const amount = Math.min(debtor.remaining, creditor.remaining);
+
+    if (amount > 0.000001) {
+      settlements.push({
+        from_user_id: debtor.id,
+        to_user_id: creditor.id,
+        amount: Number(amount.toFixed(2)),
+      });
+    }
+
+    debtor.remaining -= amount;
+    creditor.remaining -= amount;
+
+    if (debtor.remaining <= 0.000001) i++;
+    if (creditor.remaining <= 0.000001) j++;
+  }
+
+  return settlements;
+}
+
+
 module.exports = {
   sanitizeUser,
   generateStateToken,
-  getTokenTtlSeconds
+  getTokenTtlSeconds,
+  calculateRecommendedSettlements
 };
+

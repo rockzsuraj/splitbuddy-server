@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
-const { ApiError, UnauthorizedError, errorHandler, InternalServerError,  } = require('../utils/apiError');
+const { ApiError, UnauthorizedError, errorHandler, InternalServerError, } = require('../utils/apiError');
 const { JWT_SECRET } = require('../config/env');
 const logger = require('../utils/logger');
 const User = require('../models/user.model');
 const { refreshToken } = require('../controllers/auth.controller');
-const redisClient = require('../config/redisClient');
+const { redisClient } = require('../config/redisClient');
 
 /**
  * Authentication middleware
@@ -12,14 +12,23 @@ const redisClient = require('../config/redisClient');
 const authenticate = async (req, res, next) => {
   try {
     const token = req?.cookies?.accessToken || req.headers.authorization?.split(' ')[1];
-    const isBlacklisted = await redisClient.get(`blacklist:${token}`);
-
-    if (isBlacklisted) {
-       return next(new UnauthorizedError('Token has been revoked'));
-    }
 
     if (!token) {
       return next(new UnauthorizedError('Authentication required'));
+    }
+    // 1️⃣ Optional: Redis blacklist check (only if Redis is ready)
+    if (redisClient && redisClient.isReady) {
+      try {
+        const isBlacklisted = await redisClient.get(`blacklist:${token}`);
+        if (isBlacklisted) {
+          return next(new UnauthorizedError('Token has been revoked'));
+        }
+      } catch (err) {
+        // Don’t break auth if Redis fails; just log and continue
+        console.log('Redis blacklist check failed:', err.message);
+      }
+    } else {
+      console.log('Redis not ready, skipping blacklist check');
     }
 
     let decoded;
@@ -28,7 +37,7 @@ const authenticate = async (req, res, next) => {
     } catch (err) {
       if (err.name === 'TokenExpiredError') {
         return next(new UnauthorizedError('Token expired', 'TOKEN_EXPIRED'));
-      } 
+      }
       if (err.name === 'JsonWebTokenError') {
         return next(new UnauthorizedError('Invalid token', 'INVALID_TOKEN'));
       }

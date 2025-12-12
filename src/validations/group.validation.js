@@ -2,6 +2,13 @@
 const { body, param } = require('express-validator');
 const { validate } = require('./auth.validation');
 
+const emailValidator = body('email')
+    .trim()
+    .notEmpty().withMessage('Email is required')
+    .isEmail().withMessage('Invalid email format')
+    .normalizeEmail();
+
+
 module.exports = {
     createGroup: validate([
         body('group_name')
@@ -10,11 +17,14 @@ module.exports = {
             .isLength({ min: 2, max: 20 }).withMessage('group_name must be 2-20 characters'),
 
         body('description')
-            .notEmpty().withMessage('description is required')
+            .optional({ checkFalsy: true })
             .trim()
-            .isLength({ min: 5, max: 50 }).withMessage('description must be 5-50 characters')
-    ]),
+            .isLength({ min: 5, max: 50 }).withMessage('description must be 5-50 characters'),
 
+        body('group_icon')
+            .optional({ checkFalsy: true }) // <-- validates only if provided
+            .isString().withMessage('group_icon must be a string')
+    ]),
     updateGroup: validate([
         param('groupID')
             .isInt({ min: 1 }).withMessage('groupID must be a positive integer')
@@ -29,13 +39,9 @@ module.exports = {
             .optional()
             .trim()
             .isLength({ min: 5, max: 50 }).withMessage('description must be 5-50 characters'),
-
-        body().custom((value, { req }) => {
-            if (!req.body.group_name && !req.body.description) {
-                throw new Error('At least one of group_name or description is required');
-            }
-            return true;
-        })
+        body('split_mode')
+            .optional()
+            .isIn(['splitwise', 'tricount']).withMessage('split_mode must be either splitwise or tricount')
     ]),
 
     deleteGroup: validate([
@@ -45,14 +51,10 @@ module.exports = {
     ]),
 
     addMember: validate([
+        emailValidator,
         param('groupID')
             .notEmpty().withMessage('group_id is required')
             .isInt({ min: 1 }).withMessage('group_id must be a positive integer')
-            .toInt(),
-
-        body('user_id')
-            .notEmpty().withMessage('user_id is required')
-            .isInt({ min: 1 }).withMessage('user_id must be a positive integer')
             .toInt()
     ]),
     removeMember: validate([

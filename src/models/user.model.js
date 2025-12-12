@@ -1,5 +1,5 @@
 // ...existing code...
-const { executeQuery, pool, initPool } = require('../config/database');
+const { executeQuery, initPool } = require('../config/database');
 const crypto = require('crypto');
 const { ApiError } = require('../utils/apiError');
 const bcrypt = require('bcryptjs');

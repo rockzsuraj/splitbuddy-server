@@ -45,23 +45,50 @@ if (!isServerless) {
   }
 }
 
-// Create the logger
 const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
-  format: combine(
-    errors({ stack: true }),
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    isServerless ? json() : combine(colorize(), devFormat)
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }), // Captures full stack traces
+    winston.format.json()
   ),
-  transports,
-  exitOnError: false,
+  defaultMeta: { service: 'SplitBuddy' },
+  transports: [
+    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+  ],
+  exceptionHandlers: [
+    new winston.transports.File({ 
+      filename: 'logs/exceptions.log',
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.errors({ stack: true }),
+        winston.format.json()
+      )
+    })
+  ],
+  rejectionHandlers: [
+    new winston.transports.File({ 
+      filename: 'logs/rejections.log',
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.errors({ stack: true }),
+        winston.format.json()
+      )
+    })
+  ],
+  exitOnError: false // Prevents process.exit() after logging exceptions
 });
 
-// Morgan-compatible stream
-logger.morganStream = {
-  write: (message) => {
-    logger.info(message.trim());
-  },
-};
+// Console transport for development
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.simple()
+    )
+  }));
+}
+
 
 module.exports = logger;
